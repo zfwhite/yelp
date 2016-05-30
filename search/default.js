@@ -126,20 +126,43 @@ var reviews = [
 var searchButton = document.getElementById('search-button');
 var searchItem = document.getElementById('search-reviews');
 
+var body = document.getElementsByTagName('body')[0];
+
+var reviewList = 0;
+
 //search function
 function search(thing) {
 
-  var reviewList = [];
   for (var i = 0; i < reviews.length; i++) {
     if (reviews[i].name.toLowerCase().indexOf(thing.value.toLowerCase()) !== -1) {
-      reviewList += reviews[i].name + " ";
+      reviewList++;
+
+      var paragraph = document.createElement('p');
+      var div = document.createElement('div');
+      var header = document.createElement('h4');
+
+      div.setAttribute('class', 'myclass col-xs-8 col-xs-offset-2 text-center');
+      paragraph.setAttribute('class', 'reset');
+
+      header.textContent = reviews[i].name;
+      paragraph.textContent = reviews[i].reviewer + ": " + reviews[i].review + "\n";
+      body.appendChild(div);
+      div.appendChild(header);
+      div.appendChild(paragraph);
     }
   }
-  console.log(reviewList);
+  //paragraph.setAttribute('id', 'places');
+  console.log();
 }
 
 
 //search button even listener
 searchButton.addEventListener('click', function(theEvent) {
+  for (var i = 0; i <= reviewList; i++) {
+    var element = document.getElementsByClassName('col-xs-8')[i];
+    if (typeof(element) != 'undefined') {
+      element.parentNode.removeChild(element);
+    }
+  }
   search(searchItem);
 })
