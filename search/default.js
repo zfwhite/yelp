@@ -132,6 +132,9 @@ var reviewList = 0;
 
 //search function
 function search(thing) {
+  var topDiv = document.createElement('div');
+  topDiv.setAttribute('id', 'top');
+  body.appendChild(topDiv);
 
   for (var i = 0; i < reviews.length; i++) {
     if (reviews[i].name.toLowerCase().indexOf(thing.value.toLowerCase()) !== -1) {
@@ -146,7 +149,7 @@ function search(thing) {
 
       header.textContent = reviews[i].name;
       paragraph.textContent = reviews[i].reviewer + ": " + reviews[i].review + "\n";
-      body.appendChild(div);
+      topDiv.appendChild(div);
       div.appendChild(header);
       div.appendChild(paragraph);
     }
@@ -158,11 +161,9 @@ function search(thing) {
 
 //search button even listener
 searchButton.addEventListener('click', function(theEvent) {
-  for (var i = 0; i <= reviewList; i++) {
-    var element = document.getElementsByClassName('col-xs-8')[i];
-    if (typeof(element) != 'undefined') {
-      element.parentNode.removeChild(element);
-    }
+  var element = document.getElementById('top');
+  if (typeof(element) != 'undefined' && element != null) {
+    element.parentNode.removeChild(element);
   }
   search(searchItem);
 })
