@@ -128,8 +128,6 @@ var searchItem = document.getElementById('search-reviews');
 
 var body = document.getElementsByTagName('body')[0];
 
-var reviewList = 0;
-
 //search function
 function search(thing) {
   var topDiv = document.createElement('div');
@@ -138,8 +136,6 @@ function search(thing) {
 
   for (var i = 0; i < reviews.length; i++) {
     if (reviews[i].name.toLowerCase().indexOf(thing.value.toLowerCase()) !== -1) {
-      reviewList++;
-
       var paragraph = document.createElement('p');
       var div = document.createElement('div');
       var header = document.createElement('h4');
@@ -148,14 +144,12 @@ function search(thing) {
       paragraph.setAttribute('class', 'reset');
 
       header.textContent = reviews[i].name;
-      paragraph.textContent = reviews[i].reviewer + ": " + reviews[i].review + "\n";
+      paragraph.textContent = reviews[i].reviewer + ": " + reviews[i].review + " ";
       topDiv.appendChild(div);
       div.appendChild(header);
       div.appendChild(paragraph);
     }
   }
-  //paragraph.setAttribute('id', 'places');
-  console.log();
 }
 
 
