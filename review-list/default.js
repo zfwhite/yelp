@@ -48,17 +48,16 @@ var reviews = [
     category: ['food', 'sandwiches'],
     name: "Board 'n Brew'",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/boardbrew-logo.jpg',
     reviewer: 'Karen',
     review: 'Great beer selection, the sandwiches are just okay but the sweet and sour sauce is to die for!',
     score:4
   },
   {
-    //continue adding images here
     category: ['food', 'mexican'],
     name: "Taco Mesa",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/tacomesa-logo.jpg',
     reviewer: 'Erica',
     review: 'Great tacos, the cashier was rude and it was definitely not easy on my wallet',
     score: 3
@@ -67,7 +66,7 @@ var reviews = [
     category: ['food', 'sandwiches'],
     name: "Checkers",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/checkers-logo.jpg',
     reviewer: 'Karen',
     review: 'Will be back for more!',
     score: 5
@@ -76,7 +75,7 @@ var reviews = [
     category: ['food', 'mexican'],
     name: "La Salsa",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/lasalsa-logo.png',
     reviewer: 'Alex',
     review: 'Quality salsa, subpar chicken',
     score: 3
@@ -85,7 +84,7 @@ var reviews = [
     category: ['food', 'chicken'],
     name: "Wing Stop",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/wingstop-logo.png',
     reviewer: 'Jeremy',
     review: 'Great wings!',
     score: 4
@@ -94,7 +93,7 @@ var reviews = [
     category: ['food', 'mexican'],
     name: "Chipotle",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/chipotle-logo.png',
     reviewer: 'Bill',
     review: 'The food was pretty good but they did not have carnitas!',
     score: 3
@@ -103,7 +102,7 @@ var reviews = [
     category: ['food', 'chinese'],
     name: "Panda Express",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/pandaexpress-logo.svg',
     reviewer: 'Jay',
     review: 'You know what you are getting here.',
     score: 3
@@ -112,7 +111,7 @@ var reviews = [
     category: ['food', 'sandwiches'],
     name: "Subway",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/subwayreal-logo.gif',
     reviewer: 'Lisa',
     review: 'Fast but flavorless.',
     score: 2
@@ -121,7 +120,7 @@ var reviews = [
     category: ['food', 'sandwiches'],
     name: "Panera Bread",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/panera-logo.png',
     reviewer: 'Amy',
     review: 'Great soup, good sandwiches, will return!',
     score: 4
@@ -130,7 +129,7 @@ var reviews = [
     category: ['food', 'mexican'],
     name: "Oscars",
     type: "restaurant",
-    image: 'images/Wendys-logo.png',
+    image: 'images/oscars-logo.jpeg',
     reviewer: 'Eric',
     review: 'Best fish tacos I have ever had!',
     score: 5
