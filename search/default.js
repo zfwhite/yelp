@@ -120,20 +120,23 @@ var reviews = [
     score: 5
   },
 
-  /*list of places*/
+  //List of places with reviews
 ];
 
+//Search variables
 var searchButton = document.getElementById('search-button');
 var searchItem = document.getElementById('search-reviews');
 
 var body = document.getElementsByTagName('body')[0];
 
-//search function
+//Search function
 function search(thing) {
   var topDiv = document.createElement('div');
   topDiv.setAttribute('id', 'top');
   body.appendChild(topDiv);
 
+
+//append loop to use split and || to reference reviews categories in search
   for (var i = 0; i < reviews.length; i++) {
     if (reviews[i].name.toLowerCase().indexOf(thing.value.toLowerCase()) !== -1) {
       var paragraph = document.createElement('p');
@@ -153,11 +156,15 @@ function search(thing) {
 }
 
 
-//search button even listener
+//Search button even listener
 searchButton.addEventListener('click', function(theEvent) {
   var element = document.getElementById('top');
+
+  //Check to ensure the existence of div
   if (typeof(element) != 'undefined' && element != null) {
     element.parentNode.removeChild(element);
   }
+
+  //Run search Fx
   search(searchItem);
-})
+});
