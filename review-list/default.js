@@ -4,17 +4,17 @@ var reviews = [
     name: "Wendys",
     type: "restaurant",
     image: 'images/Wendys-logo.png',
-    reviewer: 'Karen',
-    review: 'Kind of greasy but you know what you are getting',
-    score: 2
+    reviewer: ['Karen', 'Megin', 'Parker', 'Kelly'],
+    review: ['Kind of greasy but you know what you are getting', 'Truly the most savory burger you will ever taste!!!', 'The Frostys are truly to die for.', 'Service was terrible!!!!!! THIS FAMILY WILL NOT BE RETURNING!'],
+    score: 3
   },
   {
     category: ['food', 'fish'],
     name: "Rubios",
     type: "restaurant",
     image: 'images/rubios-logo.png',
-    reviewer: 'Bill',
-    review: 'Pretty good tacos, the fish was a little dry though.',
+    reviewer: ['Bill'],
+    review: ['Pretty good tacos, the fish was a little dry though.'],
     score: 3
   },
   {
@@ -22,8 +22,8 @@ var reviews = [
     name: "Flippin Pizza",
     type: "restaurant",
     image: 'images/fpizza-logo.jpg',
-    reviewer: 'Karly',
-    review: 'Great pizza but the service left a bad taste in my mouth (unlike the pizza).',
+    reviewer: ['Karly'],
+    review: ['Great pizza but the service left a bad taste in my mouth (unlike the pizza).'],
     score: 3
   },
   {
@@ -31,8 +31,8 @@ var reviews = [
     name: "Dunkin' Donuts",
     type: "restaurant",
     image: 'images/dunkindonuts-logo.gif',
-    reviewer: 'Bill',
-    review: 'Not the best but it is great when I am in a hurry on my way in to work.',
+    reviewer: ['Bill'],
+    review: ['Not the best but it is great when I am in a hurry on my way in to work.'],
     score: 3
   },
   {
@@ -40,8 +40,8 @@ var reviews = [
     name: "Harbor Grill",
     type: "restaurant",
     image: 'images/harborgrill-logo.jpg',
-    reviewer: 'Ryan',
-    review: 'A bit pricy but the food was absolutely delicious',
+    reviewer: ['Ryan'],
+    review: ['A bit pricy but the food was absolutely delicious'],
     score: 4
   },
   {
@@ -49,8 +49,8 @@ var reviews = [
     name: "Board 'n Brew'",
     type: "restaurant",
     image: 'images/boardbrew-logo.jpg',
-    reviewer: 'Karen',
-    review: 'Great beer selection, the sandwiches are just okay but the sweet and sour sauce is to die for!',
+    reviewer: ['Karen'],
+    review: ['Great beer selection, the sandwiches are just okay but the sweet and sour sauce is to die for!'],
     score:4
   },
   {
@@ -58,8 +58,8 @@ var reviews = [
     name: "Taco Mesa",
     type: "restaurant",
     image: 'images/tacomesa-logo.jpg',
-    reviewer: 'Erica',
-    review: 'Great tacos, the cashier was rude and it was definitely not easy on my wallet',
+    reviewer: ['Erica'],
+    review: ['Great tacos, the cashier was rude and it was definitely not easy on my wallet'],
     score: 3
   },
   {
@@ -67,8 +67,8 @@ var reviews = [
     name: "Checkers",
     type: "restaurant",
     image: 'images/checkers-logo.jpg',
-    reviewer: 'Karen',
-    review: 'Will be back for more!',
+    reviewer: ['Karen'],
+    review: ['Will be back for more!'],
     score: 5
   },
   {
@@ -76,8 +76,8 @@ var reviews = [
     name: "La Salsa",
     type: "restaurant",
     image: 'images/lasalsa-logo.png',
-    reviewer: 'Alex',
-    review: 'Quality salsa, subpar chicken',
+    reviewer: ['Alex'],
+    review: ['Quality salsa, subpar chicken'],
     score: 3
   },
   {
@@ -85,8 +85,8 @@ var reviews = [
     name: "Wing Stop",
     type: "restaurant",
     image: 'images/wingstop-logo.png',
-    reviewer: 'Jeremy',
-    review: 'Great wings!',
+    reviewer: ['Jeremy'],
+    review: ['Great wings!'],
     score: 4
   },
   {
@@ -94,8 +94,8 @@ var reviews = [
     name: "Chipotle",
     type: "restaurant",
     image: 'images/chipotle-logo.png',
-    reviewer: 'Bill',
-    review: 'The food was pretty good but they did not have carnitas!',
+    reviewer: ['Bill'],
+    review: ['The food was pretty good but they did not have carnitas!'],
     score: 3
   },
   {
@@ -103,8 +103,8 @@ var reviews = [
     name: "Panda Express",
     type: "restaurant",
     image: 'images/pandaexpress-logo.svg',
-    reviewer: 'Jay',
-    review: 'You know what you are getting here.',
+    reviewer: ['Jay'],
+    review: ['You know what you are getting here.'],
     score: 3
   },
   {
@@ -112,8 +112,8 @@ var reviews = [
     name: "Subway",
     type: "restaurant",
     image: 'images/subwayreal-logo.gif',
-    reviewer: 'Lisa',
-    review: 'Fast but flavorless.',
+    reviewer: ['Lisa'],
+    review: ['Fast but flavorless.'],
     score: 2
   },
   {
@@ -121,8 +121,8 @@ var reviews = [
     name: "Panera Bread",
     type: "restaurant",
     image: 'images/panera-logo.png',
-    reviewer: 'Amy',
-    review: 'Great soup, good sandwiches, will return!',
+    reviewer: ['Amy'],
+    review: ['Great soup, good sandwiches, will return!'],
     score: 4
   },
   {
@@ -130,8 +130,8 @@ var reviews = [
     name: "Oscars",
     type: "restaurant",
     image: 'images/oscars-logo.jpeg',
-    reviewer: 'Eric',
-    review: 'Best fish tacos I have ever had!',
+    reviewer: ['Eric'],
+    review: ['Best fish tacos I have ever had!'],
     score: 5
   },
 
@@ -166,7 +166,7 @@ function reviewBox(reviewed) {
       row.appendChild(panelPrimary);
 
       var panelHeading = document.createElement('div');
-      panelHeading.setAttribute('class', 'panel-heading');
+      panelHeading.setAttribute('class', 'panel-heading well');
       panelPrimary.appendChild(panelHeading);
 
       var headingText = document.createElement('h4');
@@ -188,17 +188,65 @@ function reviewBox(reviewed) {
       image.setAttribute('src', reviews[i].image);
       pictureDiv.appendChild(image);
 
+      if (reviews[i].reviewer.length > 1) {
+
+        for (j = 0; j < reviews[i].reviewer.length; j++) {
+
+          var paragraphDiv = document.createElement('div');
+          paragraphDiv.setAttribute('class', 'col-xs-10');
+          panelBody.appendChild(paragraphDiv);
+
+          var reviewParagraph = document.createElement('p');
+          reviewParagraph.setAttribute('id', 'review');
+          var userIcon = document.createElement('i');
+          userIcon.setAttribute('class', 'fa fa-user');
+          userIcon.setAttribute('aria-hidden', 'true');
+          paragraphDiv.appendChild(userIcon);
+          paragraphDiv.appendChild(reviewParagraph);
+          reviewParagraph.textContent = reviews[i].reviewer[j] + ": " + reviews[i].review[j] + " ";
+        }
+      } else {
+        var paragraphDiv = document.createElement('div');
+        paragraphDiv.setAttribute('class', 'col-xs-10');
+        panelBody.appendChild(paragraphDiv);
+
+        //replace below for reviews
+        var reviewParagraph = document.createElement('p');
+        reviewParagraph.setAttribute('id', 'review');
+        var userIcon = document.createElement('i');
+        userIcon.setAttribute('class', 'fa fa-user');
+        userIcon.setAttribute('aria-hidden', 'true');
+        paragraphDiv.appendChild(userIcon);
+        paragraphDiv.appendChild(reviewParagraph);
+        reviewParagraph.textContent = reviews[i].reviewer + ": " + reviews[i].review + " ";
+      }
+
+/*
       var paragraphDiv = document.createElement('div');
       paragraphDiv.setAttribute('class', 'col-xs-10');
       panelBody.appendChild(paragraphDiv);
 
+      //replace below for reviews
       var reviewParagraph = document.createElement('p');
-      reviewParagraph.textContent = reviews[i].reviewer + ": " + reviews[i].review + " ";
+      reviewParagraph.setAttribute('id', 'review');
+      var userIcon = document.createElement('i');
+      userIcon.setAttribute('class', 'fa fa-user');
+      userIcon.setAttribute('aria-hidden', 'true');
+      paragraphDiv.appendChild(userIcon);
       paragraphDiv.appendChild(reviewParagraph);
+      reviewParagraph.textContent = reviews[i].reviewer + ": " + reviews[i].review + " ";*/
+
+      var panelFooter = document.createElement('div');
+      panelFooter.setAttribute('class', 'panel-footer well clearfix');
+      panelPrimary.appendChild(panelFooter);
+
+      var addReview = document.createElement('button');
+      addReview.setAttribute('class', 'btn btn-primary pull-right');
+      addReview.textContent = "Write a review"; //add review button
+      panelFooter.appendChild(addReview);
     }
   }
 }
-
 
 //Search button even listener
 searchButton.addEventListener('click', function(theEvent) {

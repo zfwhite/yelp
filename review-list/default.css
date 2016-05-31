@@ -2,7 +2,9 @@
   height: 150px;
 }
 
-
+#review {
+  color: #337ab7;
+}
 /*.centered-review {
   border: 1px solid black;
   width: 100%;
