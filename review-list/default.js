@@ -333,14 +333,18 @@ if(clickReview !== -1) {
 
   //discovers which button was clicked on
     var openText = theEvent.target;
-    write(openText);
+    var textId = theEvent.target.getAttribute('id');
 
+    //decides where to show review text box
+    for (i = 0; i < reviews.length; i++) {
+      if (textId === reviews[i].id) {
+        write(openText);
+      }
+    }
   });
-
 }
 
-//find a way to make write review buttons lead to writing
-//a review for that specific restaurant
+//removes hidden class from review text div
 function write(review) {
   var targetFooter = review.parentElement;
   var targetPrimary = targetFooter.parentElement;
@@ -348,61 +352,3 @@ function write(review) {
   var targetHidden = targetRow.nextSibling;
   targetHidden.classList.remove('hidden');
 }
-
-
-//variables to create submit review form....set bootstrap class hidden
-/* var containerTwo = document.createElement('div');
-containerTwo.setAttribute('class', 'container hidden');
-
-var rowTwo = document.createElement('div');
-rowTwo.setAttribute('class', 'row');
-containerTwo.appendChild(rowTwo)
-
-var reviewPanel = document.createElement('div');
-reviewPanel.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
-rowTwo.appendChild(reviewPanel)
-
-var reviewHeading = document.createElement('div');
-reviewHeading.setAttribute('class', 'panel-heading well text-center');
-reviewPanel.appendChild(reviewHeading);
-
-var topText = document.createElement('h4');
-topText.textContent = reviews[i].name;
-reviewHeading.appendChild(topText);
-
-var reviewBody = document.createElement('div');
-reviewBody.setAttribute('class', 'panel-body');
-reviewPanel.appendChild(reviewBody);
-
-var reviewForm = document.setAttribute('div');
-reviewForm.setAttribute('class', 'col-xs-8 col-xs-offset-2 form-horizontal well');
-reviewForm.setAttribute('id', 'review-type');
-reviewBody.appendChild(reviewForm);
-
-var textArea = document.createElement('textarea');
-textArea.setAttribute('class', 'form-control');
-textArea.setAttribute('id', 'complete-review');
-textArea.setAttribute('rows', '7');
-textArea.setAttribute('style', 'resize: none');
-textArea.setAttribute('placeholder', 'Your review...');
-reviewForm.appendChild(textArea);
-
-var inputReview = document.createElement('input');
-inputReview.setAttribute('id', 'review-name');
-inputReview.setAttribute('type', 'text');
-inputReview.setAttribute('class', 'form-control');
-inputReview.setAttribute('name', 'name');
-inputReview.setAttribute('placeholder', 'Name');
-reviewForm.appendChild(inputReview);
-
-var reviewSpan = document.createElement('span');
-reviewSpan.setAttribute('class', 'input-group-btn');
-reviewForm.appendChild(reviewSpan);
-
-var reviewButton = document.createElement('button');
-reviewButton.setAttribute('id', 'submit-review');
-reviewButton.setAttribute('class', 'btn btn-primary pull-right');
-reviewButton.setAttribute('type', 'button');
-reviewButton.setAttribute('name', 'button');
-reviewButton.textContent = "Submit";
-reviewSpan.appendChild(reviewButton); */
