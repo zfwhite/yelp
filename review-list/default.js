@@ -398,10 +398,14 @@ body.addEventListener('click', function(theEvent) {
     reviewBody.setAttribute('class', 'panel-body');
     reviewPanel.appendChild(reviewBody);
 
+    var form = document.createElement('form');
+    form.setAttribute('role', 'form');
+    reviewBody.appendChild(form);
+
     var reviewForm = document.createElement('div');
     reviewForm.setAttribute('class', 'col-xs-8 col-xs-offset-2 form-horizontal well');
     reviewForm.setAttribute('id', 'review-type');
-    reviewBody.appendChild(reviewForm);
+    form.appendChild(reviewForm);
 
     var textArea = document.createElement('textarea');
     textArea.setAttribute('class', 'form-control');
@@ -428,15 +432,20 @@ body.addEventListener('click', function(theEvent) {
     reviewButton.setAttribute('class', 'btn btn-primary pull-right');
     reviewButton.setAttribute('type', 'button');
     reviewButton.setAttribute('name', 'button');
+    reviewButton.setAttribute('value', 'send');
     reviewButton.textContent = "Submit";
     reviewSpan.appendChild(reviewButton);
 
     //makes review area visible
-    document.getElementById('contained').addEventListener('click', function(theEvent) {
+    document.getElementById('add-review').addEventListener('click', function(theEvent) {
 
       var openText = theEvent.target;
 
       write(openText);
+
+      document.getElementById('submit-review').addEventListener('click', function (nextEvent) {
+        writeReview(recallReview.name);
+      })
     });
   }
 });
@@ -448,4 +457,20 @@ function write(review) {
   var targetRow = targetPrimary.parentElement;
   var targetHidden = targetRow.nextSibling;
   targetHidden.classList.remove('hidden');
+}
+
+//function to write and submit a review
+function writeReview(recReview) {
+  var written = document.getElementById('complete-review').value;
+  var named = document.getElementById('review-name').value;
+  var submitReview = document.getElementById('submit-review');
+
+  for (i = 0; i < reviews.length; i++) {
+    if (reviews[i].name.indexOf(recReview) !== -1) {
+      reviews[i].review.push(written);
+      reviews[i].reviewer.push(named);
+      console.log(reviews[i].review);
+      console.log(reviews[i].reviewer);
+    }
+  }
 }
