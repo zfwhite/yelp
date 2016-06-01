@@ -5,6 +5,14 @@
 #review {
   color: #337ab7;
 }
+
+#review-type {
+  border: 1px solid black;
+  width: 100%;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
 /*.centered-review {
   border: 1px solid black;
   width: 100%;
