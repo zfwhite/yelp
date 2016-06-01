@@ -13,6 +13,10 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.linked {
+  color: white;
+}
 /*.centered-review {
   border: 1px solid black;
   width: 100%;

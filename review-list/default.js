@@ -186,8 +186,13 @@ function reviewBox(reviewed) {
 
       var headingText = document.createElement('h4');
       headingText.setAttribute('class', 'text-center');
-      headingText.textContent = reviews[i].name;
       panelHeading.appendChild(headingText);
+
+      var headingLink = document.createElement('a');
+      headingLink.setAttribute('href', 'http://www.google.com');
+      headingLink.setAttribute('class', 'linked');
+      headingLink.textContent = reviews[i].name;
+      headingText.appendChild(headingLink);
 
       var panelBody = document.createElement('div');
       panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
@@ -247,7 +252,7 @@ function reviewBox(reviewed) {
       var addReview = document.createElement('button');
       addReview.setAttribute('class', 'btn btn-primary pull-right');
       addReview.setAttribute('id', reviews[i].id)
-      addReview.textContent = "Write a review"; //add review button
+      addReview.textContent = "View"; //add review button
       panelFooter.appendChild(addReview);
 
       //second container- hidden
@@ -255,7 +260,7 @@ function reviewBox(reviewed) {
       containerTwo.setAttribute('class', 'container hidden');
       mainDiv.appendChild(containerTwo);*/
 
-      var rowTwo = document.createElement('div');
+      /*var rowTwo = document.createElement('div');
       rowTwo.setAttribute('class', 'row hidden');
       container.appendChild(rowTwo)
 
@@ -306,7 +311,7 @@ function reviewBox(reviewed) {
       reviewButton.setAttribute('type', 'button');
       reviewButton.setAttribute('name', 'button');
       reviewButton.textContent = "Submit";
-      reviewSpan.appendChild(reviewButton);
+      reviewSpan.appendChild(reviewButton);*/
     }
   }
 }
@@ -327,7 +332,7 @@ searchButton.addEventListener('click', function(theEvent) {
 //get main div id
 var clickReview = document.getElementById('main');
 
-if(clickReview !== -1) {
+/*if(clickReview !== -1) {
   //add event listener to click on main div
   body.addEventListener('click', function(theEvent) {
 
@@ -342,7 +347,7 @@ if(clickReview !== -1) {
       }
     }
   });
-}
+}*/
 
 //removes hidden class from review text div
 function write(review) {
@@ -352,3 +357,166 @@ function write(review) {
   var targetHidden = targetRow.nextSibling;
   targetHidden.classList.remove('hidden');
 }
+
+body.addEventListener('click', function(theEvent) {
+  var readReviews = theEvent.target;
+  var textId = theEvent.target.getAttribute('id');
+  var recallReview = [];
+
+  //decides where to show review text box
+  for (i = 0; i < reviews.length; i++) {
+    if (textId === reviews[i].id) {
+      recallReview = reviews[i];
+
+      var element = document.getElementById('top');
+
+      //Check to ensure the existence of div before clearing previous reviews
+      if (typeof(element) != 'undefined' && element != null) {
+        element.parentNode.removeChild(element);
+      }
+    }
+  }
+
+  if (textId === recallReview.id) {
+    var container = document.createElement('div');
+    container.setAttribute('class', 'container-fluid');
+    body.appendChild(container);
+
+    var row = document.createElement('div');
+    row.setAttribute('class', 'row');
+    container.appendChild(row);
+
+    var panelPrimary = document.createElement('div');
+    panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
+    row.appendChild(panelPrimary);
+
+    var panelHeading = document.createElement('div');
+    panelHeading.setAttribute('class', 'panel-heading well');
+    panelPrimary.appendChild(panelHeading);
+
+    var headingText = document.createElement('h4');
+    headingText.setAttribute('class', 'text-center');
+    panelHeading.appendChild(headingText);
+
+    var headingLink = document.createElement('a');
+    headingLink.setAttribute('href', 'http://www.google.com');
+    headingLink.setAttribute('class', 'linked');
+    headingLink.textContent = recallReview.name;
+    headingText.appendChild(headingLink);
+
+    var panelBody = document.createElement('div');
+    panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
+    panelPrimary.appendChild(panelBody);
+
+    var pictureDiv = document.createElement('div');
+    pictureDiv.setAttribute('class', 'col-xs-2');
+    panelBody.appendChild(pictureDiv);
+
+    //gives image of searched place
+    var image = document.createElement('img');
+    image.setAttribute('class', 'img-responsive');
+    image.setAttribute('src', recallReview.image);
+    pictureDiv.appendChild(image);
+
+    //check for multiple reviews/reviewers
+    if (recallReview.reviewer.length > 1) {
+
+      //loop for multiple reviews
+      for (j = 0; j < recallReview.reviewer.length; j++) {
+
+        var paragraphDiv = document.createElement('div');
+        paragraphDiv.setAttribute('class', 'col-xs-10');
+        panelBody.appendChild(paragraphDiv);
+
+        var reviewParagraph = document.createElement('p');
+        reviewParagraph.setAttribute('id', 'review');
+        var userIcon = document.createElement('i');
+        userIcon.setAttribute('class', 'fa fa-user');
+        userIcon.setAttribute('aria-hidden', 'true');
+        paragraphDiv.appendChild(userIcon);
+        paragraphDiv.appendChild(reviewParagraph);
+        reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j] + " ";
+      }
+    } else {
+
+      //if there is only a single review
+      var paragraphDiv = document.createElement('div');
+      paragraphDiv.setAttribute('class', 'col-xs-10');
+      panelBody.appendChild(paragraphDiv);
+
+
+      var reviewParagraph = document.createElement('p');
+      reviewParagraph.setAttribute('id', 'review');
+      var userIcon = document.createElement('i');
+      userIcon.setAttribute('class', 'fa fa-user');
+      userIcon.setAttribute('aria-hidden', 'true');
+      paragraphDiv.appendChild(userIcon);
+      paragraphDiv.appendChild(reviewParagraph);
+      reviewParagraph.textContent = recallReview.reviewer + ": " + recallReview.review + " ";
+    }
+
+    var panelFooter = document.createElement('div');
+    panelFooter.setAttribute('class', 'panel-footer well clearfix');
+    panelPrimary.appendChild(panelFooter);
+
+    var addReview = document.createElement('button');
+    addReview.setAttribute('class', 'btn btn-primary pull-right');
+    addReview.setAttribute('id', recallReview.id)
+    addReview.textContent = "Add review"; //add review button
+    panelFooter.appendChild(addReview);
+
+    //hidden
+    var rowTwo = document.createElement('div');
+    rowTwo.setAttribute('class', 'row hidden');
+    container.appendChild(rowTwo)
+
+    var reviewPanel = document.createElement('div');
+    reviewPanel.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
+    rowTwo.appendChild(reviewPanel)
+
+    var reviewHeading = document.createElement('div');
+    reviewHeading.setAttribute('class', 'panel-heading well text-center');
+    reviewPanel.appendChild(reviewHeading);
+
+    var topText = document.createElement('h4');
+    topText.textContent = "Your review of " + recallReview.name;
+    reviewHeading.appendChild(topText);
+
+    var reviewBody = document.createElement('div');
+    reviewBody.setAttribute('class', 'panel-body');
+    reviewPanel.appendChild(reviewBody);
+
+    var reviewForm = document.createElement('div');
+    reviewForm.setAttribute('class', 'col-xs-8 col-xs-offset-2 form-horizontal well');
+    reviewForm.setAttribute('id', 'review-type');
+    reviewBody.appendChild(reviewForm);
+
+    var textArea = document.createElement('textarea');
+    textArea.setAttribute('class', 'form-control');
+    textArea.setAttribute('id', 'complete-review');
+    textArea.setAttribute('rows', '7');
+    textArea.setAttribute('style', 'resize: none');
+    textArea.setAttribute('placeholder', 'Your review...');
+    reviewForm.appendChild(textArea);
+
+    var inputReview = document.createElement('input');
+    inputReview.setAttribute('id', 'review-name');
+    inputReview.setAttribute('type', 'text');
+    inputReview.setAttribute('class', 'form-control');
+    inputReview.setAttribute('name', 'name');
+    inputReview.setAttribute('placeholder', 'Name');
+    reviewForm.appendChild(inputReview);
+
+    var reviewSpan = document.createElement('span');
+    reviewSpan.setAttribute('class', 'input-group-btn');
+    reviewForm.appendChild(reviewSpan);
+
+    var reviewButton = document.createElement('button');
+    reviewButton.setAttribute('id', 'submit-review');
+    reviewButton.setAttribute('class', 'btn btn-primary pull-right');
+    reviewButton.setAttribute('type', 'button');
+    reviewButton.setAttribute('name', 'button');
+    reviewButton.textContent = "Submit";
+    reviewSpan.appendChild(reviewButton);
+  }
+});
