@@ -3,6 +3,7 @@ var reviews = [
     category: ['food', 'fast'],
     name: "Wendys",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "wendys",
     image: 'images/Wendys-logo.png',
     reviewer: ['Karen', 'Megin', 'Parker', 'Kelly', 'Roger'],
@@ -13,6 +14,7 @@ var reviews = [
     category: ['food', 'fish'],
     name: "Rubios",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "rubios",
     image: 'images/rubios-logo.png',
     reviewer: ['Bill'],
@@ -23,6 +25,7 @@ var reviews = [
     category: ['food', 'pizza'],
     name: "Flippin Pizza",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "flippin",
     image: 'images/fpizza-logo.jpg',
     reviewer: ['Karly'],
@@ -33,6 +36,7 @@ var reviews = [
     category: ['food', 'fast'],
     name: "Dunkin' Donuts",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "dunkin",
     image: 'images/dunkindonuts-logo.gif',
     reviewer: ['Bill'],
@@ -43,6 +47,7 @@ var reviews = [
     category: ['food', 'fish'],
     name: "Harbor Grill",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "harbor",
     image: 'images/harborgrill-logo.jpg',
     reviewer: ['Ryan'],
@@ -53,6 +58,7 @@ var reviews = [
     category: ['food', 'sandwiches'],
     name: "Board 'n Brew'",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "board",
     image: 'images/boardbrew-logo.jpg',
     reviewer: ['Karen'],
@@ -63,6 +69,7 @@ var reviews = [
     category: ['food', 'mexican'],
     name: "Taco Mesa",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "taco",
     image: 'images/tacomesa-logo.jpg',
     reviewer: ['Erica'],
@@ -73,6 +80,7 @@ var reviews = [
     category: ['food', 'sandwiches'],
     name: "Checkers",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "checkers",
     image: 'images/checkers-logo.jpg',
     reviewer: ['Karen'],
@@ -83,6 +91,7 @@ var reviews = [
     category: ['food', 'mexican'],
     name: "La Salsa",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "la",
     image: 'images/lasalsa-logo.png',
     reviewer: ['Alex'],
@@ -93,6 +102,7 @@ var reviews = [
     category: ['food', 'chicken'],
     name: "Wing Stop",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "wing",
     image: 'images/wingstop-logo.png',
     reviewer: ['Jeremy'],
@@ -103,6 +113,7 @@ var reviews = [
     category: ['food', 'mexican'],
     name: "Chipotle",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "chipotle",
     image: 'images/chipotle-logo.png',
     reviewer: ['Bill'],
@@ -113,6 +124,7 @@ var reviews = [
     category: ['food', 'chinese'],
     name: "Panda Express",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "panda",
     image: 'images/pandaexpress-logo.svg',
     reviewer: ['Jay'],
@@ -123,6 +135,7 @@ var reviews = [
     category: ['food', 'sandwiches'],
     name: "Subway",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "subway",
     image: 'images/subwayreal-logo.gif',
     reviewer: ['Lisa'],
@@ -133,6 +146,7 @@ var reviews = [
     category: ['food', 'sandwiches'],
     name: "Panera Bread",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "panera",
     image: 'images/panera-logo.png',
     reviewer: ['Amy'],
@@ -143,6 +157,7 @@ var reviews = [
     category: ['food', 'mexican'],
     name: "Oscars",
     type: "restaurant",
+    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     id: "oscars",
     image: 'images/oscars-logo.jpeg',
     reviewer: ['Eric'],
@@ -208,42 +223,18 @@ function reviewBox(reviewed) {
       image.setAttribute('src', reviews[i].image);
       pictureDiv.appendChild(image);
 
-      //check for multiple reviews/reviewers
-      if (reviews[i].reviewer.length > 1) {
+      var paragraphDiv = document.createElement('div');
+      paragraphDiv.setAttribute('class', 'col-xs-10');
+      panelBody.appendChild(paragraphDiv);
 
-        //loop for multiple reviews
-        for (j = 0; j < reviews[i].reviewer.length; j++) {
-
-          var paragraphDiv = document.createElement('div');
-          paragraphDiv.setAttribute('class', 'col-xs-10');
-          panelBody.appendChild(paragraphDiv);
-
-          var reviewParagraph = document.createElement('p');
-          reviewParagraph.setAttribute('id', 'review');
-          var userIcon = document.createElement('i');
-          userIcon.setAttribute('class', 'fa fa-user');
-          userIcon.setAttribute('aria-hidden', 'true');
-          paragraphDiv.appendChild(userIcon);
-          paragraphDiv.appendChild(reviewParagraph);
-          reviewParagraph.textContent = reviews[i].reviewer[j] + ": " + reviews[i].review[j] + " ";
-        }
-      } else {
-
-        //if there is only a single review
-        var paragraphDiv = document.createElement('div');
-        paragraphDiv.setAttribute('class', 'col-xs-10');
-        panelBody.appendChild(paragraphDiv);
-
-
-        var reviewParagraph = document.createElement('p');
-        reviewParagraph.setAttribute('id', 'review');
-        var userIcon = document.createElement('i');
-        userIcon.setAttribute('class', 'fa fa-user');
-        userIcon.setAttribute('aria-hidden', 'true');
-        paragraphDiv.appendChild(userIcon);
-        paragraphDiv.appendChild(reviewParagraph);
-        reviewParagraph.textContent = reviews[i].reviewer + ": " + reviews[i].review + " ";
-      }
+      var reviewParagraph = document.createElement('p');
+      reviewParagraph.setAttribute('id', 'review');
+      var userIcon = document.createElement('i');
+      userIcon.setAttribute('class', 'fa fa-align-left');
+      userIcon.setAttribute('aria-hidden', 'true');
+      paragraphDiv.appendChild(userIcon);
+      paragraphDiv.appendChild(reviewParagraph);
+      reviewParagraph.textContent = reviews[i].description;
 
       var panelFooter = document.createElement('div');
       panelFooter.setAttribute('class', 'panel-footer well clearfix');
@@ -252,7 +243,7 @@ function reviewBox(reviewed) {
       var addReview = document.createElement('button');
       addReview.setAttribute('class', 'btn btn-primary pull-right');
       addReview.setAttribute('id', reviews[i].id)
-      addReview.textContent = "View"; //add review button
+      addReview.textContent = "View reviews"; //add review button
       panelFooter.appendChild(addReview);
     }
   }
@@ -271,8 +262,7 @@ searchButton.addEventListener('click', function(theEvent) {
   reviewBox(searchItem);
 });
 
-//get main div id
-var clickReview = document.getElementById('main');
+
 
 body.addEventListener('click', function(theEvent) {
   var readReviews = theEvent.target;
@@ -294,10 +284,15 @@ body.addEventListener('click', function(theEvent) {
   }
 
   if (textId === recallReview.id) {
+
+    var mainDiv = document.createElement('div');
+    mainDiv.setAttribute('id', 'top');
+    body.appendChild(mainDiv);
+
     var container = document.createElement('div');
     container.setAttribute('id', 'contained');
     container.setAttribute('class', 'container-fluid');
-    body.appendChild(container);
+    mainDiv.appendChild(container);
 
     var row = document.createElement('div');
     row.setAttribute('class', 'row');
@@ -440,6 +435,7 @@ body.addEventListener('click', function(theEvent) {
     document.getElementById('contained').addEventListener('click', function(theEvent) {
 
       var openText = theEvent.target;
+
       write(openText);
     });
   }
