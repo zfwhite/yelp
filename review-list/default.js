@@ -471,6 +471,7 @@ function writeReview(recReview) {
       reviews[i].reviewer.push(named);
       console.log(reviews[i].review);
       console.log(reviews[i].reviewer);
+      return reviews[i];
     }
   }
 }
