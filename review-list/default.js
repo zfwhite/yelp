@@ -254,64 +254,6 @@ function reviewBox(reviewed) {
       addReview.setAttribute('id', reviews[i].id)
       addReview.textContent = "View"; //add review button
       panelFooter.appendChild(addReview);
-
-      //second container- hidden
-      /*var containerTwo = document.createElement('div');
-      containerTwo.setAttribute('class', 'container hidden');
-      mainDiv.appendChild(containerTwo);*/
-
-      /*var rowTwo = document.createElement('div');
-      rowTwo.setAttribute('class', 'row hidden');
-      container.appendChild(rowTwo)
-
-      var reviewPanel = document.createElement('div');
-      reviewPanel.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
-      rowTwo.appendChild(reviewPanel)
-
-      var reviewHeading = document.createElement('div');
-      reviewHeading.setAttribute('class', 'panel-heading well text-center');
-      reviewPanel.appendChild(reviewHeading);
-
-      var topText = document.createElement('h4');
-      topText.textContent = "Your review of " + reviews[i].name;
-      reviewHeading.appendChild(topText);
-
-      var reviewBody = document.createElement('div');
-      reviewBody.setAttribute('class', 'panel-body');
-      reviewPanel.appendChild(reviewBody);
-
-      var reviewForm = document.createElement('div');
-      reviewForm.setAttribute('class', 'col-xs-8 col-xs-offset-2 form-horizontal well');
-      reviewForm.setAttribute('id', 'review-type');
-      reviewBody.appendChild(reviewForm);
-
-      var textArea = document.createElement('textarea');
-      textArea.setAttribute('class', 'form-control');
-      textArea.setAttribute('id', 'complete-review');
-      textArea.setAttribute('rows', '7');
-      textArea.setAttribute('style', 'resize: none');
-      textArea.setAttribute('placeholder', 'Your review...');
-      reviewForm.appendChild(textArea);
-
-      var inputReview = document.createElement('input');
-      inputReview.setAttribute('id', 'review-name');
-      inputReview.setAttribute('type', 'text');
-      inputReview.setAttribute('class', 'form-control');
-      inputReview.setAttribute('name', 'name');
-      inputReview.setAttribute('placeholder', 'Name');
-      reviewForm.appendChild(inputReview);
-
-      var reviewSpan = document.createElement('span');
-      reviewSpan.setAttribute('class', 'input-group-btn');
-      reviewForm.appendChild(reviewSpan);
-
-      var reviewButton = document.createElement('button');
-      reviewButton.setAttribute('id', 'submit-review');
-      reviewButton.setAttribute('class', 'btn btn-primary pull-right');
-      reviewButton.setAttribute('type', 'button');
-      reviewButton.setAttribute('name', 'button');
-      reviewButton.textContent = "Submit";
-      reviewSpan.appendChild(reviewButton);*/
     }
   }
 }
@@ -331,32 +273,6 @@ searchButton.addEventListener('click', function(theEvent) {
 
 //get main div id
 var clickReview = document.getElementById('main');
-
-/*if(clickReview !== -1) {
-  //add event listener to click on main div
-  body.addEventListener('click', function(theEvent) {
-
-  //discovers which button was clicked on
-    var openText = theEvent.target;
-    var textId = theEvent.target.getAttribute('id');
-
-    //decides where to show review text box
-    for (i = 0; i < reviews.length; i++) {
-      if (textId === reviews[i].id) {
-        write(openText);
-      }
-    }
-  });
-}*/
-
-//removes hidden class from review text div
-function write(review) {
-  var targetFooter = review.parentElement;
-  var targetPrimary = targetFooter.parentElement;
-  var targetRow = targetPrimary.parentElement;
-  var targetHidden = targetRow.nextSibling;
-  targetHidden.classList.remove('hidden');
-}
 
 body.addEventListener('click', function(theEvent) {
   var readReviews = theEvent.target;
@@ -379,6 +295,7 @@ body.addEventListener('click', function(theEvent) {
 
   if (textId === recallReview.id) {
     var container = document.createElement('div');
+    container.setAttribute('id', 'contained');
     container.setAttribute('class', 'container-fluid');
     body.appendChild(container);
 
@@ -461,7 +378,7 @@ body.addEventListener('click', function(theEvent) {
 
     var addReview = document.createElement('button');
     addReview.setAttribute('class', 'btn btn-primary pull-right');
-    addReview.setAttribute('id', recallReview.id)
+    addReview.setAttribute('id', 'add-review');
     addReview.textContent = "Add review"; //add review button
     panelFooter.appendChild(addReview);
 
@@ -518,5 +435,21 @@ body.addEventListener('click', function(theEvent) {
     reviewButton.setAttribute('name', 'button');
     reviewButton.textContent = "Submit";
     reviewSpan.appendChild(reviewButton);
+
+    //makes review area visible
+    document.getElementById('contained').addEventListener('click', function(theEvent) {
+
+      var openText = theEvent.target;
+      write(openText);
+    });
   }
 });
+
+//removes hidden class from review text div
+function write(review) {
+  var targetFooter = review.parentElement;
+  var targetPrimary = targetFooter.parentElement;
+  var targetRow = targetPrimary.parentElement;
+  var targetHidden = targetRow.nextSibling;
+  targetHidden.classList.remove('hidden');
+}
