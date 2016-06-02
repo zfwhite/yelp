@@ -168,6 +168,11 @@ var reviews = [
   //List of places with reviews
 ];
 
+
+var home = document.getElementById('home');
+
+home.addEventListener('click', removeTop, removeSingle);
+
 //Search variables
 var searchButton = document.getElementById('search-button');
 var searchItem = document.getElementById('search-reviews');
@@ -229,10 +234,15 @@ function reviewBox(reviewed) {
 
       var reviewParagraph = document.createElement('p');
       reviewParagraph.setAttribute('id', 'review');
-      var userIcon = document.createElement('i');
-      userIcon.setAttribute('class', 'fa fa-align-left');
-      userIcon.setAttribute('aria-hidden', 'true');
-      paragraphDiv.appendChild(userIcon);
+
+      //stars
+      for (j = 0; j < reviews[i].score; j++) {
+        var rating = document.createElement('i');
+        rating.setAttribute('class', 'fa fa-star-o');
+        rating.setAttribute('aria-hidden', 'true');
+        paragraphDiv.appendChild(rating);
+      }
+
       paragraphDiv.appendChild(reviewParagraph);
       reviewParagraph.textContent = reviews[i].description;
 
@@ -248,6 +258,7 @@ function reviewBox(reviewed) {
     }
   }
 }
+
 
 //Search button even listener
 searchButton.addEventListener('click', function(theEvent) {
