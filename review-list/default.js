@@ -41,7 +41,7 @@ var reviews = [
     image: 'images/dunkindonuts-logo.gif',
     reviewer: ['Bill'],
     review: ['Not the best but it is great when I am in a hurry on my way in to work.'],
-    score: 3
+    score: 2
   },
   {
     category: ['food', 'fish'],
@@ -568,10 +568,14 @@ function updatedReviews(newReview) {
 
       var reviewParagraph = document.createElement('p');
       reviewParagraph.setAttribute('id', 'review');
-      var userIcon = document.createElement('i');
-      userIcon.setAttribute('class', 'fa fa-align-left');
-      userIcon.setAttribute('aria-hidden', 'true');
-      paragraphDiv.appendChild(userIcon);
+      //stars
+      for (j = 0; j < reviews[i].score; j++) {
+        var rating = document.createElement('i');
+        rating.setAttribute('class', 'fa fa-star-o');
+        rating.setAttribute('aria-hidden', 'true');
+        paragraphDiv.appendChild(rating);
+      }
+      
       paragraphDiv.appendChild(reviewParagraph);
       reviewParagraph.textContent = reviews[i].description;
 
