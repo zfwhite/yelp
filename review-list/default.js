@@ -8,7 +8,7 @@ var reviews = [
     image: 'images/Wendys-logo.png',
     reviewer: ['Karen', 'Megin', 'Parker', 'Kelly', 'Roger'],
     review: ['Kind of greasy but you know what you are getting', 'Truly the most savory burger you will ever taste!!!', 'The Frostys are truly to die for.', 'Service was terrible!!!!!! THIS FAMILY WILL NOT BE RETURNING!', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'],
-    score: 3
+    score: 9
   },
   {
     category: ['food', 'fish'],
@@ -467,6 +467,16 @@ body.addEventListener('click', function(theEvent) {
       write(openText);
 
       document.getElementById('submit-review').addEventListener('click', function (nextEvent) {
+
+        if(document.getElementById('complete-review').value === "") {
+          alert("Please input your review.");
+          return false;
+        }
+
+        if(document.getElementById('review-name').value === "") {
+          alert("Please input your name.");
+          return false;
+        }
 
         var vanish = document.getElementById('top');
         vanish.classList.add('hidden');
