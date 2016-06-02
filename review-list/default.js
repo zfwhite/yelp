@@ -295,6 +295,7 @@ body.addEventListener('click', function(theEvent) {
     mainDiv.appendChild(container);
 
     var row = document.createElement('div');
+    row.setAttribute('id', 'first');
     row.setAttribute('class', 'row');
     container.appendChild(row);
 
@@ -441,11 +442,15 @@ body.addEventListener('click', function(theEvent) {
 
       var openText = theEvent.target;
 
+      var clear = document.getElementById('first');
+      clear.classList.add('hidden');
+
       write(openText);
 
       document.getElementById('submit-review').addEventListener('click', function (nextEvent) {
+
         writeReview(recallReview.name);
-      })
+      });
     });
   }
 });
@@ -463,7 +468,6 @@ function write(review) {
 function writeReview(recReview) {
   var written = document.getElementById('complete-review').value;
   var named = document.getElementById('review-name').value;
-  var submitReview = document.getElementById('submit-review');
 
   for (i = 0; i < reviews.length; i++) {
     if (reviews[i].name.indexOf(recReview) !== -1) {
