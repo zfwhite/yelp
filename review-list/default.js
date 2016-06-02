@@ -431,7 +431,7 @@ body.addEventListener('click', function(theEvent) {
     var reviewButton = document.createElement('button');
     reviewButton.setAttribute('id', 'submit-review');
     reviewButton.setAttribute('class', 'btn btn-primary pull-right');
-    reviewButton.setAttribute('type', 'button');
+    reviewButton.setAttribute('type', 'reset');
     reviewButton.setAttribute('name', 'button');
     reviewButton.setAttribute('value', 'send');
     reviewButton.textContent = "Submit";
