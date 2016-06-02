@@ -251,18 +251,30 @@ function reviewBox(reviewed) {
 
 //Search button even listener
 searchButton.addEventListener('click', function(theEvent) {
+  removeTop();
+  removeSingle();
+
+  //Run search Fx
+  reviewBox(searchItem);
+});
+
+function removeTop() {
   var element = document.getElementById('top');
 
   //Check to ensure the existence of div before clearing previous reviews
   if (typeof(element) != 'undefined' && element != null) {
     element.parentNode.removeChild(element);
   }
+}
 
-  //Run search Fx
-  reviewBox(searchItem);
-});
+function removeSingle() {
+  var element = document.getElementById('single');
 
-
+  //Check to ensure the existence of div before clearing previous reviews
+  if (typeof(element) != 'undefined' && element != null) {
+    element.parentNode.removeChild(element);
+  }
+}
 
 body.addEventListener('click', function(theEvent) {
   var readReviews = theEvent.target;
@@ -274,12 +286,8 @@ body.addEventListener('click', function(theEvent) {
     if (textId === reviews[i].id) {
       recallReview = reviews[i];
 
-      var element = document.getElementById('top');
-
-      //Check to ensure the existence of div before clearing previous reviews
-      if (typeof(element) != 'undefined' && element != null) {
-        element.parentNode.removeChild(element);
-      }
+      removeTop();
+      removeSingle();
     }
   }
 
@@ -449,6 +457,9 @@ body.addEventListener('click', function(theEvent) {
 
       document.getElementById('submit-review').addEventListener('click', function (nextEvent) {
 
+        var vanish = document.getElementById('top');
+        vanish.classList.add('hidden');
+
         writeReview(recallReview.name);
       });
     });
@@ -475,7 +486,85 @@ function writeReview(recReview) {
       reviews[i].reviewer.push(named);
       console.log(reviews[i].review);
       console.log(reviews[i].reviewer);
+      updatedReviews(reviews[i].name);
       return reviews[i];
+    }
+  }
+}
+
+
+function updatedReviews(newReview) {
+  var mainDiv = document.createElement('div');
+  mainDiv.setAttribute('id', 'single');
+  body.appendChild(mainDiv);
+
+  for (var i = 0; i < reviews.length; i++) {
+    if (reviews[i].name == newReview) {
+
+      var container = document.createElement('div');
+      container.setAttribute('class', 'container-fluid');
+      mainDiv.appendChild(container);
+
+      var row = document.createElement('div');
+      row.setAttribute('class', 'row');
+      container.appendChild(row);
+
+      var panelPrimary = document.createElement('div');
+      panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
+      row.appendChild(panelPrimary);
+
+      var panelHeading = document.createElement('div');
+      panelHeading.setAttribute('class', 'panel-heading well');
+      panelPrimary.appendChild(panelHeading);
+
+      var headingText = document.createElement('h4');
+      headingText.setAttribute('class', 'text-center');
+      panelHeading.appendChild(headingText);
+
+      var headingLink = document.createElement('a');
+      headingLink.setAttribute('href', 'http://www.google.com');
+      headingLink.setAttribute('class', 'linked');
+      headingLink.textContent = reviews[i].name;
+      headingText.appendChild(headingLink);
+
+      var panelBody = document.createElement('div');
+      panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
+      panelPrimary.appendChild(panelBody);
+
+      var pictureDiv = document.createElement('div');
+      pictureDiv.setAttribute('class', 'col-xs-2');
+      panelBody.appendChild(pictureDiv);
+
+      //gives image of searched place
+      var image = document.createElement('img');
+      image.setAttribute('class', 'img-responsive');
+      image.setAttribute('src', reviews[i].image);
+      pictureDiv.appendChild(image);
+
+      var paragraphDiv = document.createElement('div');
+      paragraphDiv.setAttribute('class', 'col-xs-10');
+      panelBody.appendChild(paragraphDiv);
+
+      var reviewParagraph = document.createElement('p');
+      reviewParagraph.setAttribute('id', 'review');
+      var userIcon = document.createElement('i');
+      userIcon.setAttribute('class', 'fa fa-align-left');
+      userIcon.setAttribute('aria-hidden', 'true');
+      paragraphDiv.appendChild(userIcon);
+      paragraphDiv.appendChild(reviewParagraph);
+      reviewParagraph.textContent = reviews[i].description;
+
+      var panelFooter = document.createElement('div');
+      panelFooter.setAttribute('class', 'panel-footer well clearfix');
+      panelPrimary.appendChild(panelFooter);
+
+      var addReview = document.createElement('button');
+      addReview.setAttribute('class', 'btn btn-primary pull-right');
+      addReview.setAttribute('id', reviews[i].id)
+      addReview.textContent = "View reviews"; //add review button
+      panelFooter.appendChild(addReview);
+
+      removeTop();
     }
   }
 }
