@@ -603,6 +603,8 @@ starScore.addEventListener('mouseover', function(theEvent) {
   var whichStar = theEvent.target.getAttribute('id');
   var theStars = starScore.getElementsByTagName('i');
 
+  var numerical = 0;
+
   for (i = 0; i < theStars.length; i++) {
     if (whichStar > i) {
       theStars[i].classList.remove('fa-star-o');
@@ -612,9 +614,13 @@ starScore.addEventListener('mouseover', function(theEvent) {
       theStars[i].classList.remove('fa-star');
     }
   }
-  starScore.addEventListener('click', function(newEvent) {
-    console.dir(whichStar);
-  })
+});
+
+starScore.addEventListener('click', function(newEvent) {
+  var numberedStar = newEvent.target.getAttribute('id');
+  var page = document.createElement('p');
+  page.textContent = numberedStar;
+  starScore.appendChild(page);
 });
 
 
