@@ -726,7 +726,17 @@ $(function() {
 
 $(function() {
   $('#star-four').hover(function() {
+    $('#star-four').removeClass('fa-star'),
+    $('#star-four').addClass('fa-star-o');
+  }, function() {
+    $('#star-two').css('color', '');
+  });
+});
+
+$(function() {
+  $('#star-five').hover(function() {
     $('#star-four').addClass('fa-star');
+    $('#star-four').removeClass('fa-star-o');
   }, function() {
     $('#star-two').css('color', '');
   });

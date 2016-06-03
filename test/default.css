@@ -18,6 +18,9 @@ i.star:hover {
   color: #337ab7;
 }
 
+#star-five {
+  color: white;
+}
 #review-type {
   border: 1px solid black;
   width: 100%;
