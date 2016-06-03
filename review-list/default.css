@@ -6,6 +6,10 @@
   color: #337ab7;
 }
 
+#sign {
+  color: white;
+}
+
 #review-type {
   border: 1px solid black;
   width: 100%;

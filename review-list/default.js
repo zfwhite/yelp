@@ -427,6 +427,45 @@ body.addEventListener('click', function(theEvent) {
     reviewForm.setAttribute('id', 'review-type');
     form.appendChild(reviewForm);
 
+
+//stars
+    var showStars = document.createElement('div');
+    showStars.setAttribute('class', 'hover-class row');
+    showStars.setAttribute('id', 'star-menu');
+    reviewHeading.appendChild(showStars);
+
+    var starOne = document.createElement('i');
+    starOne.setAttribute('id', '1');
+    starOne.setAttribute('class', 'fa fa-star-o star');
+    starOne.setAttribute('aria-hidden', 'true');
+    showStars.appendChild(starOne);
+
+    var starTwo = document.createElement('i');
+    starTwo.setAttribute('id', '2');
+    starTwo.setAttribute('class', 'fa fa-star-o star');
+    starTwo.setAttribute('aria-hidden', 'true');
+    showStars.appendChild(starTwo);
+
+    var starThree = document.createElement('i');
+    starThree.setAttribute('id', '3');
+    starThree.setAttribute('class', 'fa fa-star-o star');
+    starThree.setAttribute('aria-hidden', 'true');
+    showStars.appendChild(starThree);
+
+    var starFour = document.createElement('i');
+    starFour.setAttribute('id', '4');
+    starFour.setAttribute('class', 'fa fa-star-o star');
+    starFour.setAttribute('aria-hidden', 'true');
+    showStars.appendChild(starFour);
+
+    var starFive = document.createElement('i');
+    starFive.setAttribute('id', '5');
+    starFive.setAttribute('class', 'fa fa-star-o star');
+    starFive.setAttribute('aria-hidden', 'true');
+    showStars.appendChild(starFive);
+
+
+//
     var textArea = document.createElement('textarea');
     textArea.setAttribute('class', 'form-control');
     textArea.setAttribute('id', 'complete-review');
@@ -483,6 +522,35 @@ body.addEventListener('click', function(theEvent) {
 
         writeReview(recallReview.name);
       });
+      //add
+      var starScore = document.getElementById('star-menu');
+
+      reviewHeading.addEventListener('mouseover', function(theEvent) {
+
+        var whichStar = theEvent.target.getAttribute('id');
+        var theStars = starScore.getElementsByTagName('i');
+
+        var numerical = 0;
+
+        for (i = 0; i < theStars.length; i++) {
+          if (whichStar > i) {
+            theStars[i].classList.remove('fa-star-o');
+            theStars[i].classList.add('fa-star');
+          } else {
+            theStars[i].classList.add('fa-star-o');
+            theStars[i].classList.remove('fa-star');
+          }
+        }
+      });
+
+      reviewHeading.addEventListener('click', function(newEvent) {
+        var numberedStar = newEvent.target.getAttribute('id');
+        // var page = document.createElement('p');
+        // page.textContent = numberedStar;
+        // starScore.appendChild(page);
+        console.log(numberedStar);
+      });
+
     });
   }
 });
@@ -575,7 +643,7 @@ function updatedReviews(newReview) {
         rating.setAttribute('aria-hidden', 'true');
         paragraphDiv.appendChild(rating);
       }
-      
+
       paragraphDiv.appendChild(reviewParagraph);
       reviewParagraph.textContent = reviews[i].description;
 
@@ -593,3 +661,167 @@ function updatedReviews(newReview) {
     }
   }
 }
+
+
+//stars in jquery
+/*var starScore = document.getElementById('star-menu');
+
+if (typeof(starScore) != 'undefined' && starScore != null) {
+
+  starScore.addEventListener('mouseover', function(theEvent) {
+
+    var whichStar = theEvent.target.getAttribute('id');
+    var theStars = starScore.getElementsByTagName('i');
+
+    var numerical = 0;
+
+    for (i = 0; i < theStars.length; i++) {
+      if (whichStar > i) {
+        theStars[i].classList.remove('fa-star-o');
+        theStars[i].classList.add('fa-star');
+      } else {
+        theStars[i].classList.add('fa-star-o');
+        theStars[i].classList.remove('fa-star');
+      }
+    }
+  });
+
+  starScore.addEventListener('click', function(newEvent) {
+    var numberedStar = newEvent.target.getAttribute('id');
+    var page = document.createElement('p');
+    page.textContent = numberedStar;
+    starScore.appendChild(page);
+  });
+}
+*/
+/*
+$(function() {
+  $('#star-four').hover(function() {
+    $('#star-three').removeClass('fa-star-o'),
+    $('#star-three').addClass('fa-star'),
+    $('#star-two').removeClass('fa-star-o'),
+    $('#star-two').addClass('fa-star')
+    $('#star-one').removeClass('fa-star-o'),
+    $('#star-one').addClass('fa-star')
+    $('#star-zero').removeClass('fa-star-o'),
+    $('#star-zero').addClass('fa-star')
+    $('#star-four').removeClass('fa-star-o'),
+    $('#star-four').addClass('fa-star');
+  });
+});
+
+$(function() {
+  $('#star-three').hover(function() {
+    $('#star-three').removeClass('fa-star-o'),
+    $('#star-three').addClass('fa-star'),
+    $('#star-two').removeClass('fa-star-o'),
+    $('#star-two').addClass('fa-star')
+    $('#star-one').removeClass('fa-star-o'),
+    $('#star-one').addClass('fa-star')
+    $('#star-zero').removeClass('fa-star-o'),
+    $('#star-zero').addClass('fa-star');
+  });
+});
+
+$(function() {
+  $('#star-two').hover(function() {
+    $('#star-two').removeClass('fa-star-o'),
+    $('#star-two').addClass('fa-star')
+    $('#star-one').removeClass('fa-star-o'),
+    $('#star-one').addClass('fa-star')
+    $('#star-zero').removeClass('fa-star-o'),
+    $('#star-zero').addClass('fa-star')
+  });
+});
+
+$(function() {
+  $('#star-one').hover(function() {
+    $('#star-one').removeClass('fa-star-o'),
+    $('#star-one').addClass('fa-star')
+    $('#star-zero').removeClass('fa-star-o'),
+    $('#star-zero').addClass('fa-star')
+
+  });
+});
+
+$(function() {
+  $('#star-zero').hover(function() {
+    $('#star-zero').removeClass('fa-star-o'),
+    $('#star-zero').addClass('fa-star')
+
+  });
+});
+
+
+//switch
+
+$(function() {
+  $('#star-zero').hover(function() {
+    $('#star-three').removeClass('fa-star'),
+    $('#star-three').addClass('fa-star-o'),
+    $('#star-two').removeClass('fa-star'),
+    $('#star-two').addClass('fa-star-o')
+    $('#star-one').removeClass('fa-star'),
+    $('#star-one').addClass('fa-star-o')
+    $('#star-zero').removeClass('fa-star'),
+    $('#star-zero').addClass('fa-star-o')
+    $('#star-four').removeClass('fa-star'),
+    $('#star-four').addClass('fa-star-o');
+  });
+});
+
+$(function() {
+  $('#star-one').hover(function() {
+    $('#star-three').removeClass('fa-star'),
+    $('#star-three').addClass('fa-star-o'),
+    $('#star-two').removeClass('fa-star'),
+    $('#star-two').addClass('fa-star-o')
+    $('#star-one').removeClass('fa-star'),
+    $('#star-one').addClass('fa-star-o')
+    $('#star-four').removeClass('fa-star'),
+    $('#star-four').addClass('fa-star-o');
+  });
+});
+
+$(function() {
+  $('#star-two').hover(function() {
+    $('#star-three').removeClass('fa-star'),
+    $('#star-three').addClass('fa-star-o'),
+    $('#star-two').removeClass('fa-star'),
+    $('#star-two').addClass('fa-star-o')
+    $('#star-four').removeClass('fa-star'),
+    $('#star-four').addClass('fa-star-o');
+  });
+});
+
+$(function() {
+  $('#star-three').hover(function() {
+    $('#star-three').removeClass('fa-star'),
+    $('#star-three').addClass('fa-star-o'),
+    $('#star-four').removeClass('fa-star'),
+    $('#star-four').addClass('fa-star-o');
+  });
+});
+
+$(function() {
+  $('#star-four').hover(function() {
+    $('#star-four').removeClass('fa-star'),
+    $('#star-four').addClass('fa-star-o');
+  });
+});
+
+$(function() {
+  $('#star-five').hover(function() {
+    $('#star-three').removeClass('fa-star-o'),
+    $('#star-three').addClass('fa-star'),
+    $('#star-two').removeClass('fa-star-o'),
+    $('#star-two').addClass('fa-star')
+    $('#star-one').removeClass('fa-star-o'),
+    $('#star-one').addClass('fa-star')
+    $('#star-zero').removeClass('fa-star-o'),
+    $('#star-zero').addClass('fa-star')
+    $('#star-four').removeClass('fa-star-o'),
+    $('#star-four').addClass('fa-star');
+  });
+});
+*/
