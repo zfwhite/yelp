@@ -14,10 +14,6 @@ i.star {
   font-size: 200%;
 }
 
-i.star:hover {
-  color: #337ab7;
-}
-
 #star-five {
   color: white;
 }
