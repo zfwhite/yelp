@@ -8,7 +8,7 @@ var reviews = [
     image: 'images/Wendys-logo.png',
     reviewer: ['Karen', 'Megin', 'Parker', 'Kelly', 'Roger'],
     review: ['Kind of greasy but you know what you are getting', 'Truly the most savory burger you will ever taste!!!', 'The Frostys are truly to die for.', 'Service was terrible!!!!!! THIS FAMILY WILL NOT BE RETURNING!', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'],
-    score: 9
+    score: 15
   },
   {
     category: ['food', 'fish'],
@@ -168,6 +168,7 @@ var reviews = [
   //List of places with reviews
 ];
 
+/*stars need to be updated immediately after review is sent*/
 
 var home = document.getElementById('home');
 
@@ -236,7 +237,8 @@ function reviewBox(reviewed) {
       reviewParagraph.setAttribute('id', 'review');
 
       //stars
-      for (j = 0; j < reviews[i].score; j++) {
+      var averageScore = Math.floor(reviews[i].score / reviews[i].reviewer.length);
+      for (j = 0; j < averageScore; j++) {
         var rating = document.createElement('i');
         rating.setAttribute('class', 'fa fa-star-o');
         rating.setAttribute('aria-hidden', 'true');
@@ -415,7 +417,7 @@ body.addEventListener('click', function(theEvent) {
     reviewHeading.appendChild(topText);
 
     var reviewBody = document.createElement('div');
-    reviewBody.setAttribute('class', 'panel-body');
+    reviewBody.setAttribute('class', 'panel-body hidden');
     reviewPanel.appendChild(reviewBody);
 
     var form = document.createElement('form');
@@ -503,6 +505,8 @@ body.addEventListener('click', function(theEvent) {
       var clear = document.getElementById('first');
       clear.classList.add('hidden');
 
+      var numberedStar = 0;
+
       write(openText);
 
       document.getElementById('submit-review').addEventListener('click', function (nextEvent) {
@@ -520,7 +524,7 @@ body.addEventListener('click', function(theEvent) {
         var vanish = document.getElementById('top');
         vanish.classList.add('hidden');
 
-        writeReview(recallReview.name);
+        writeReview(recallReview.name, numberedStar);
       });
       //add
       var starScore = document.getElementById('star-menu');
@@ -544,7 +548,10 @@ body.addEventListener('click', function(theEvent) {
       });
 
       reviewHeading.addEventListener('click', function(newEvent) {
-        var numberedStar = newEvent.target.getAttribute('id');
+        numberedStar = newEvent.target.getAttribute('id');
+        var hideStar = document.getElementById('star-menu');
+        hideStar.classList.add('hidden');
+        reviewBody.classList.remove('hidden');
         // var page = document.createElement('p');
         // page.textContent = numberedStar;
         // starScore.appendChild(page);
@@ -565,9 +572,10 @@ function write(review) {
 }
 
 //function to write and submit a review
-function writeReview(recReview) {
+function writeReview(recReview, numStar) {
   var written = document.getElementById('complete-review').value;
   var named = document.getElementById('review-name').value;
+  var countScore = parseInt(numStar);
 
   for (i = 0; i < reviews.length; i++) {
     if (reviews[i].name.indexOf(recReview) !== -1) {
@@ -576,6 +584,8 @@ function writeReview(recReview) {
       console.log(reviews[i].review);
       console.log(reviews[i].reviewer);
       updatedReviews(reviews[i].name);
+      reviews[i].score += countScore;
+      console.log(reviews[i].score);
       return reviews[i];
     }
   }
@@ -661,167 +671,3 @@ function updatedReviews(newReview) {
     }
   }
 }
-
-
-//stars in jquery
-/*var starScore = document.getElementById('star-menu');
-
-if (typeof(starScore) != 'undefined' && starScore != null) {
-
-  starScore.addEventListener('mouseover', function(theEvent) {
-
-    var whichStar = theEvent.target.getAttribute('id');
-    var theStars = starScore.getElementsByTagName('i');
-
-    var numerical = 0;
-
-    for (i = 0; i < theStars.length; i++) {
-      if (whichStar > i) {
-        theStars[i].classList.remove('fa-star-o');
-        theStars[i].classList.add('fa-star');
-      } else {
-        theStars[i].classList.add('fa-star-o');
-        theStars[i].classList.remove('fa-star');
-      }
-    }
-  });
-
-  starScore.addEventListener('click', function(newEvent) {
-    var numberedStar = newEvent.target.getAttribute('id');
-    var page = document.createElement('p');
-    page.textContent = numberedStar;
-    starScore.appendChild(page);
-  });
-}
-*/
-/*
-$(function() {
-  $('#star-four').hover(function() {
-    $('#star-three').removeClass('fa-star-o'),
-    $('#star-three').addClass('fa-star'),
-    $('#star-two').removeClass('fa-star-o'),
-    $('#star-two').addClass('fa-star')
-    $('#star-one').removeClass('fa-star-o'),
-    $('#star-one').addClass('fa-star')
-    $('#star-zero').removeClass('fa-star-o'),
-    $('#star-zero').addClass('fa-star')
-    $('#star-four').removeClass('fa-star-o'),
-    $('#star-four').addClass('fa-star');
-  });
-});
-
-$(function() {
-  $('#star-three').hover(function() {
-    $('#star-three').removeClass('fa-star-o'),
-    $('#star-three').addClass('fa-star'),
-    $('#star-two').removeClass('fa-star-o'),
-    $('#star-two').addClass('fa-star')
-    $('#star-one').removeClass('fa-star-o'),
-    $('#star-one').addClass('fa-star')
-    $('#star-zero').removeClass('fa-star-o'),
-    $('#star-zero').addClass('fa-star');
-  });
-});
-
-$(function() {
-  $('#star-two').hover(function() {
-    $('#star-two').removeClass('fa-star-o'),
-    $('#star-two').addClass('fa-star')
-    $('#star-one').removeClass('fa-star-o'),
-    $('#star-one').addClass('fa-star')
-    $('#star-zero').removeClass('fa-star-o'),
-    $('#star-zero').addClass('fa-star')
-  });
-});
-
-$(function() {
-  $('#star-one').hover(function() {
-    $('#star-one').removeClass('fa-star-o'),
-    $('#star-one').addClass('fa-star')
-    $('#star-zero').removeClass('fa-star-o'),
-    $('#star-zero').addClass('fa-star')
-
-  });
-});
-
-$(function() {
-  $('#star-zero').hover(function() {
-    $('#star-zero').removeClass('fa-star-o'),
-    $('#star-zero').addClass('fa-star')
-
-  });
-});
-
-
-//switch
-
-$(function() {
-  $('#star-zero').hover(function() {
-    $('#star-three').removeClass('fa-star'),
-    $('#star-three').addClass('fa-star-o'),
-    $('#star-two').removeClass('fa-star'),
-    $('#star-two').addClass('fa-star-o')
-    $('#star-one').removeClass('fa-star'),
-    $('#star-one').addClass('fa-star-o')
-    $('#star-zero').removeClass('fa-star'),
-    $('#star-zero').addClass('fa-star-o')
-    $('#star-four').removeClass('fa-star'),
-    $('#star-four').addClass('fa-star-o');
-  });
-});
-
-$(function() {
-  $('#star-one').hover(function() {
-    $('#star-three').removeClass('fa-star'),
-    $('#star-three').addClass('fa-star-o'),
-    $('#star-two').removeClass('fa-star'),
-    $('#star-two').addClass('fa-star-o')
-    $('#star-one').removeClass('fa-star'),
-    $('#star-one').addClass('fa-star-o')
-    $('#star-four').removeClass('fa-star'),
-    $('#star-four').addClass('fa-star-o');
-  });
-});
-
-$(function() {
-  $('#star-two').hover(function() {
-    $('#star-three').removeClass('fa-star'),
-    $('#star-three').addClass('fa-star-o'),
-    $('#star-two').removeClass('fa-star'),
-    $('#star-two').addClass('fa-star-o')
-    $('#star-four').removeClass('fa-star'),
-    $('#star-four').addClass('fa-star-o');
-  });
-});
-
-$(function() {
-  $('#star-three').hover(function() {
-    $('#star-three').removeClass('fa-star'),
-    $('#star-three').addClass('fa-star-o'),
-    $('#star-four').removeClass('fa-star'),
-    $('#star-four').addClass('fa-star-o');
-  });
-});
-
-$(function() {
-  $('#star-four').hover(function() {
-    $('#star-four').removeClass('fa-star'),
-    $('#star-four').addClass('fa-star-o');
-  });
-});
-
-$(function() {
-  $('#star-five').hover(function() {
-    $('#star-three').removeClass('fa-star-o'),
-    $('#star-three').addClass('fa-star'),
-    $('#star-two').removeClass('fa-star-o'),
-    $('#star-two').addClass('fa-star')
-    $('#star-one').removeClass('fa-star-o'),
-    $('#star-one').addClass('fa-star')
-    $('#star-zero').removeClass('fa-star-o'),
-    $('#star-zero').addClass('fa-star')
-    $('#star-four').removeClass('fa-star-o'),
-    $('#star-four').addClass('fa-star');
-  });
-});
-*/
