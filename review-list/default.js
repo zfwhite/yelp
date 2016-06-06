@@ -693,6 +693,7 @@ var addLocation = document.getElementById('addLocation');
 addLocation.addEventListener('click', function() {
   removeTop();
   removeSingle();
+  removeLocation();
 
   var locationDiv = document.createElement('div');
   locationDiv.setAttribute('class', 'container-fluid');
@@ -803,10 +804,13 @@ addLocation.addEventListener('click', function() {
     score: 0
   };
 
+  var sameRestaurant = newRestaurant;
   reviews.push(newRestaurant);
 
   var locationNew = document.getElementById('location-div');
   locationNew.classList.add('hidden');
+
+  updatedReviews(sameRestaurant.name);
 
   console.log(reviews);
 
