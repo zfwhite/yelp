@@ -6,6 +6,14 @@
   color: #337ab7;
 }
 
+#home {
+  margin-top: 10px;
+}
+
+#addLocation {
+  margin-top: 10px;
+}
+
 #sign {
   color: white;
 }

@@ -172,7 +172,7 @@ var reviews = [
 
 var home = document.getElementById('home');
 
-home.addEventListener('click', removeTop, removeSingle);
+home.addEventListener('click', removeTop, removeSingle, removeLocation);
 
 //Search variables
 var searchButton = document.getElementById('search-button');
@@ -266,6 +266,7 @@ function reviewBox(reviewed) {
 searchButton.addEventListener('click', function(theEvent) {
   removeTop();
   removeSingle();
+  removeLocation();
 
   //Run search Fx
   reviewBox(searchItem);
@@ -273,6 +274,15 @@ searchButton.addEventListener('click', function(theEvent) {
 
 function removeTop() {
   var element = document.getElementById('top');
+
+  //Check to ensure the existence of div before clearing previous reviews
+  if (typeof(element) != 'undefined' && element != null) {
+    element.parentNode.removeChild(element);
+  }
+}
+
+function removeLocation() {
+  var element = document.getElementById('location-div');
 
   //Check to ensure the existence of div before clearing previous reviews
   if (typeof(element) != 'undefined' && element != null) {
@@ -371,7 +381,7 @@ body.addEventListener('click', function(theEvent) {
         paragraphDiv.appendChild(reviewParagraph);
         reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j] + " ";
       }
-    } else {
+    } else if (recallReview.reviewer.length == 1) {
 
       //if there is only a single review
       var paragraphDiv = document.createElement('div');
@@ -670,6 +680,135 @@ function updatedReviews(newReview) {
       panelFooter.appendChild(addReview);
 
       removeTop();
+      removeLocation();
     }
   }
 }
+
+
+//add location
+
+var addLocation = document.getElementById('addLocation');
+
+addLocation.addEventListener('click', function() {
+  removeTop();
+  removeSingle();
+
+  var locationDiv = document.createElement('div');
+  locationDiv.setAttribute('class', 'container-fluid');
+  locationDiv.setAttribute('id', 'location-div');
+  body.appendChild(locationDiv);
+
+  var locationRow = document.createElement('div');
+  locationRow.setAttribute('class', 'row');
+  locationDiv.appendChild(locationRow);
+
+  var locationPanel = document.createElement('div');
+  locationPanel.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
+  locationRow.appendChild(locationPanel);
+
+  var locationHeading = document.createElement('div');
+  locationHeading.setAttribute('class', 'panel-heading well text-center');
+  var locationHeader = document.createElement('h4');
+  locationHeader.textContent = "Add a location";
+  locationHeading.appendChild(locationHeader);
+  locationPanel.appendChild(locationHeading);
+
+  var locationBody = document.createElement('div');
+  locationBody.setAttribute('class', 'panel-body');
+  locationPanel.appendChild(locationBody);
+
+  var locationForm = document.createElement('form')
+  locationBody.appendChild(locationForm);
+
+  var formDiv = document.createElement('div');
+  formDiv.setAttribute('class', 'col-xs-10 col-xs-offset-1 form-horizontal well');
+  locationForm.appendChild(formDiv);
+
+  var locationName = document.createElement('input');
+  locationName.setAttribute('type', 'text');
+  locationName.setAttribute('id', 'location-name');
+  locationName.setAttribute('class', 'form-control');
+  locationName.setAttribute('placeholder', 'Name');
+  formDiv.appendChild(locationName);
+
+  var locationCategory = document.createElement('input');
+  locationCategory.setAttribute('type', 'text');
+  locationCategory.setAttribute('id', 'location-category');
+  locationCategory.setAttribute('class', 'form-control');
+  locationCategory.setAttribute('placeholder', 'Category');
+  formDiv.appendChild(locationCategory);
+
+  var locationDescription = document.createElement('textarea');
+  locationDescription.setAttribute('class', 'form-control');
+  locationDescription.setAttribute('id', 'location-description');
+  locationDescription.setAttribute('rows', '7');
+  locationDescription.setAttribute('style', 'resize: none');
+  locationDescription.setAttribute('placeholder', 'Description...');
+  formDiv.appendChild(locationDescription);
+
+  var locationSpan = document.createElement('span');
+  locationSpan.setAttribute('class', 'input-group-btn');
+  formDiv.appendChild(locationSpan);
+
+  var locationButton = document.createElement('button');
+  locationButton.setAttribute('class', 'btn btn-primary pull-right');
+  locationButton.setAttribute('id', 'submit-location');
+  locationButton.setAttribute('type', 'reset');
+  locationButton.setAttribute('name', 'button');
+  locationButton.setAttribute('value', 'send');
+  locationButton.textContent = "Submit";
+  formDiv.appendChild(locationButton);
+
+
+  //location image
+  /*var locationImage = document.createElement('input');
+  locationImage.setAttribute('type', 'file');
+  locationImage.setAttribute('id', 'location-image');
+  formDiv.appendChild(locationImage);*/
+
+
+
+  //location example
+  /*category: ['food', 'sandwiches'],
+  name: "Panera Bread",
+  type: "restaurant",
+  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  id: "panera",
+  image: 'images/panera-logo.png',
+  reviewer: ['Amy'],
+  review: ['Great soup, good sandwiches, will return!'],
+  score: 4*/
+
+
+  //submit new location to array
+  var submitLocation = document.getElementById('submit-location');
+
+  submitLocation.addEventListener('click', function() {
+
+    var newName = document.getElementById('location-name');
+    var newCategory = document.getElementById('location-category');
+    var newDescription = document.getElementById('location-description');
+    var newId = newName.value.split(' ', 1);
+
+    var newRestaurant = {
+    category: [newCategory.value],
+    name: newName.value,
+    type: "restaurant",
+    description: newDescription.value,
+    id: newId.toString(),
+    image: "",
+    reviewer: [],
+    review: [],
+    score: 0
+  };
+
+  reviews.push(newRestaurant);
+
+  var locationNew = document.getElementById('location-div');
+  locationNew.classList.add('hidden');
+
+  console.log(reviews);
+
+  });
+});
