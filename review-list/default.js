@@ -583,9 +583,9 @@ function writeReview(recReview, numStar) {
       reviews[i].reviewer.push(named);
       console.log(reviews[i].review);
       console.log(reviews[i].reviewer);
-      updatedReviews(reviews[i].name);
       reviews[i].score += countScore;
       console.log(reviews[i].score);
+      updatedReviews(reviews[i].name);
       return reviews[i];
     }
   }
@@ -646,8 +646,10 @@ function updatedReviews(newReview) {
 
       var reviewParagraph = document.createElement('p');
       reviewParagraph.setAttribute('id', 'review');
+
       //stars
-      for (j = 0; j < reviews[i].score; j++) {
+      var averageScore = Math.floor(reviews[i].score / reviews[i].reviewer.length);
+      for (j = 0; j < averageScore; j++) {
         var rating = document.createElement('i');
         rating.setAttribute('class', 'fa fa-star-o');
         rating.setAttribute('aria-hidden', 'true');
