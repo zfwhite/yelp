@@ -616,14 +616,17 @@ body.addEventListener('click', function(theEvent) {
         if (funButton == j) {
           num = j.toString();
           var updateFunny = document.getElementById(num);
-          recallReview.review[j].funny += 1;
-          updateFunny.textContent = "funny: " + recallReview.review[j].funny;
 
-          funnyCount(recallReview);
+          if (recallReview.review[j].funny < 1) {
+            recallReview.review[j].funny += 1;
+            updateFunny.textContent = "funny: " + recallReview.review[j].funny;
 
-          console.log(recallReview.review[j].funny);}
-    }
+            funnyCount(recallReview);
 
+            console.log(recallReview.review[j].funny);
+          }
+        }
+      }
 
     });
   }
@@ -635,7 +638,6 @@ function funnyCount(update) {
 
     if (reviews[i].name == update.name) {
       reviews[i] = update;
-      console.log(reviews[i].review);
     }
   }
 }
@@ -660,10 +662,7 @@ function writeReview(recReview, numStar) {
     if (reviews[i].id.indexOf(recReview) !== -1) {
       reviews[i].review.push(reviewObj);
       reviews[i].reviewer.push(named);
-      console.log(reviews[i].review);
-      console.log(reviews[i].reviewer);
       reviews[i].score += countScore;
-      console.log(reviews[i].score);
       updatedReviews(reviews[i].name);
       return reviews[i];
     }
@@ -832,8 +831,6 @@ addLocation.addEventListener('click', function() {
 
 
   //submit new location to array
-  //will cause issue if two restaurants with the same first word in their name
-  //are added
   var submitLocation = document.getElementById('submit-location');
 
   submitLocation.addEventListener('click', function() {
@@ -863,27 +860,5 @@ addLocation.addEventListener('click', function() {
 
   updatedReviews(sameRestaurant.name);
 
-  console.log(reviews);
-
   });
 });
-/*review-tag testing below
-
-
-var testReview = reviews[0];
-
-var funny = document.createElement('button');
-funny.setAttribute('class', 'btn btn-primary');
-funny.setAttribute('id', 'funCount');
-funny.textContent = "funny: " + testReview.review[1].funny;
-
-var funBox = document.getElementById('fun');
-funBox.appendChild(funny);
-
-funny.addEventListener('click', function() {
-  testReview.review[1].funny += 1;
-  funny.textContent = "funny: " + testReview.review[1].funny;
-
-  console.log(testReview.review[1].funny);
-});
-*/
