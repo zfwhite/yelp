@@ -7,7 +7,7 @@ var reviews = [
     id: "wendys",
     image: 'images/Wendys-logo.png',
     reviewer: ['Karen', 'Megin', 'Parker', 'Kelly' ],
-    review: [{ text: 'Kind of greasy but you know what you are getting', funny: 0}, { text: 'Truly the most savory burger you will ever taste!!!', funny: 0}, { text: 'The Frostys are truly to die for.', funny: 0}, { text: 'Service was terrible!!!!!! THIS FAMILY WILL NOT BE RETURNING!', funny: 0}],
+    review: [{ text: 'Kind of greasy but you know what you are getting', funny: 0, useful: 0}, { text: 'Truly the most savory burger you will ever taste!!!', funny: 0, useful: 0}, { text: 'The Frostys are truly to die for.', funny: 0, useful: 0}, { text: 'Service was terrible!!!!!! THIS FAMILY WILL NOT BE RETURNING!', funny: 0, useful: 0}],
     score: 15
   },
   {
@@ -18,7 +18,7 @@ var reviews = [
     id: "rubios",
     image: 'images/rubios-logo.png',
     reviewer: ['Bill'],
-    review: [{ text: 'Pretty good tacos, the fish was a little dry though.', funny: 0}],
+    review: [{ text: 'Pretty good tacos, the fish was a little dry though.', funny: 0, useful: 0}],
     score: 3
   },
   {
@@ -29,7 +29,7 @@ var reviews = [
     id: "flippin",
     image: 'images/fpizza-logo.jpg',
     reviewer: ['Karly'],
-    review: [{ text: 'Great pizza but the service left a bad taste in my mouth (unlike the pizza).', funny: 0}],
+    review: [{ text: 'Great pizza but the service left a bad taste in my mouth (unlike the pizza).', funny: 0, useful: 0}],
     score: 3
   },
   {
@@ -40,7 +40,7 @@ var reviews = [
     id: "dunkin",
     image: 'images/dunkindonuts-logo.gif',
     reviewer: ['Bill'],
-    review: [{ text: 'Not the best but it is great when I am in a hurry on my way in to work.', funny: 0}],
+    review: [{ text: 'Not the best but it is great when I am in a hurry on my way in to work.', funny: 0, useful: 0}],
     score: 2
   },
   {
@@ -51,7 +51,7 @@ var reviews = [
     id: "harbor",
     image: 'images/harborgrill-logo.jpg',
     reviewer: ['Ryan'],
-    review: [{ text: 'A bit pricy but the food was absolutely delicious', funny: 0}],
+    review: [{ text: 'A bit pricy but the food was absolutely delicious', funny: 0, useful: 0}],
     score: 4
   },
   {
@@ -62,7 +62,7 @@ var reviews = [
     id: "board",
     image: 'images/boardbrew-logo.jpg',
     reviewer: ['Karen'],
-    review: [{ text: 'Great beer selection, the sandwiches are just okay but the sweet and sour sauce is to die for!', funny: 0}],
+    review: [{ text: 'Great beer selection, the sandwiches are just okay but the sweet and sour sauce is to die for!', funny: 0, useful: 0}],
     score:4
   },
   {
@@ -73,7 +73,7 @@ var reviews = [
     id: "taco",
     image: 'images/tacomesa-logo.jpg',
     reviewer: ['Erica'],
-    review: [{ text: 'Great tacos, the cashier was rude and it was definitely not easy on my wallet', funny: 0}],
+    review: [{ text: 'Great tacos, the cashier was rude and it was definitely not easy on my wallet', funny: 0, useful: 0}],
     score: 3
   },
   {
@@ -84,7 +84,7 @@ var reviews = [
     id: "checkers",
     image: 'images/checkers-logo.jpg',
     reviewer: ['Karen'],
-    review: [{ text: 'Will be back for more!', funny: 0}],
+    review: [{ text: 'Will be back for more!', funny: 0, useful: 0}],
     score: 5
   },
   {
@@ -95,7 +95,7 @@ var reviews = [
     id: "la",
     image: 'images/lasalsa-logo.png',
     reviewer: ['Alex'],
-    review: [{ text: 'Quality salsa, subpar chicken', funny: 0}],
+    review: [{ text: 'Quality salsa, subpar chicken', funny: 0, useful: 0}],
     score: 3
   },
   {
@@ -106,7 +106,7 @@ var reviews = [
     id: "wing",
     image: 'images/wingstop-logo.png',
     reviewer: ['Jeremy'],
-    review: [{ text: 'Great wings!', funny: 0}],
+    review: [{ text: 'Great wings!', funny: 0, useful: 0}],
     score: 4
   },
   {
@@ -117,7 +117,7 @@ var reviews = [
     id: "chipotle",
     image: 'images/chipotle-logo.png',
     reviewer: ['Bill'],
-    review: [{ text: 'The food was pretty good but they did not have carnitas!', funny: 0}],
+    review: [{ text: 'The food was pretty good but they did not have carnitas!', funny: 0, useful: 0}],
     score: 3
   },
   {
@@ -128,7 +128,7 @@ var reviews = [
     id: "panda",
     image: 'images/pandaexpress-logo.svg',
     reviewer: ['Jay'],
-    review: [{ text: 'You know what you are getting here.', funny: 0}],
+    review: [{ text: 'You know what you are getting here.', funny: 0, useful: 0}],
     score: 3
   },
   {
@@ -139,7 +139,7 @@ var reviews = [
     id: "subway",
     image: 'images/subwayreal-logo.gif',
     reviewer: ['Lisa'],
-    review: [{ text: 'Fast but flavorless.', funny: 0}],
+    review: [{ text: 'Fast but flavorless.', funny: 0, useful: 0}],
     score: 2
   },
   {
@@ -150,7 +150,7 @@ var reviews = [
     id: "panera",
     image: 'images/panera-logo.png',
     reviewer: ['Amy'],
-    review: [{ text: 'Great soup, good sandwiches, will return!', funny: 0}],
+    review: [{ text: 'Great soup, good sandwiches, will return!', funny: 0, useful: 0}],
     score: 4
   },
   {
@@ -161,7 +161,7 @@ var reviews = [
     id: "oscars",
     image: 'images/oscars-logo.jpeg',
     reviewer: ['Eric'],
-    review: [{ text: 'Best fish tacos I have ever had!', funny: 0}],
+    review: [{ text: 'Best fish tacos I have ever had!', funny: 0, useful: 0}],
     score: 5
   },
 
@@ -185,6 +185,7 @@ function reviewBox(reviewed) {
   var mainDiv = document.createElement('div');
   mainDiv.setAttribute('id', 'top');
   body.appendChild(mainDiv);
+
 
   for (var i = 0; i < reviews.length; i++) {
     if (reviews[i].name.toLowerCase().indexOf(reviewed.value.toLowerCase()) !== -1) {
@@ -383,6 +384,7 @@ body.addEventListener('click', function(theEvent) {
         reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j].text + " ";
 
         //review tag buttons
+        //funny
         var buttonForm = document.createElement('form');
         paragraphDiv.appendChild(buttonForm);
 
@@ -396,6 +398,16 @@ body.addEventListener('click', function(theEvent) {
         funny.textContent = "funny: " + recallReview.review[j].funny;
 
         buttonForm.appendChild(funny);
+
+        //useful
+        var useful = document.createElement('button');
+        useful.setAttribute('class', 'btn btn-primary');
+        useful.setAttribute('class', 'funCount');
+        useful.setAttribute('type', 'button');
+        useful.setAttribute('id', ('useful' + j));
+        useful.textContent = "useful: " + recallReview.review[j].useful;
+
+        buttonForm.appendChild(useful);
 
         //end button tags
 
@@ -419,6 +431,7 @@ body.addEventListener('click', function(theEvent) {
       reviewParagraph.textContent = recallReview.reviewer + ": " + recallReview.review[0].text + " ";
 
       //review tag buttons
+      //funny
       var buttonForm = document.createElement('form');
       paragraphDiv.appendChild(buttonForm);
 
@@ -432,6 +445,16 @@ body.addEventListener('click', function(theEvent) {
       funny.textContent = "funny: " + recallReview.review[0].funny;
 
       buttonForm.appendChild(funny);
+
+      //useful
+      var useful = document.createElement('button');
+      useful.setAttribute('class', 'btn btn-primary');
+      useful.setAttribute('class', 'funCount');
+      useful.setAttribute('type', 'button');
+      useful.setAttribute('id', ('useful' + 0));
+      useful.textContent = "useful: " + recallReview.review[0].useful;
+
+      buttonForm.appendChild(useful);
 
       //end button tags
     }
@@ -629,6 +652,29 @@ body.addEventListener('click', function(theEvent) {
       }
 
     });
+    //useful event listener
+    document.getElementById('review-body').addEventListener('click', function(usefulClick) {
+
+      var usefulButton = usefulClick.target.getAttribute('id');
+
+      for (j = 0; j < recallReview.review.length; j++) {
+
+        if (usefulButton == ('useful' + j)) {
+          num = 'useful' + j.toString();
+          var updateUseful = document.getElementById(num);
+
+          if (recallReview.review[j].useful < 1) {
+            recallReview.review[j].useful += 1;
+            updateUseful.textContent = "useful: " + recallReview.review[j].useful;
+
+            funnyCount(recallReview);
+
+            console.log(recallReview.review[j].useful);
+          }
+        }
+      }
+
+    });
   }
 });
 
@@ -656,7 +702,7 @@ function writeReview(recReview, numStar) {
   var written = document.getElementById('complete-review').value;
   var named = document.getElementById('review-name').value;
   var countScore = parseInt(numStar);
-  var reviewObj = { text: written, funny: 0};
+  var reviewObj = { text: written, funny: 0, useful: 0};
 
   for (i = 0; i < reviews.length; i++) {
     if (reviews[i].id.indexOf(recReview) !== -1) {
