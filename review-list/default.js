@@ -350,6 +350,7 @@ body.addEventListener('click', function(theEvent) {
 
     var panelBody = document.createElement('div');
     panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
+    panelBody.setAttribute('id', 'review-body')
     panelPrimary.appendChild(panelBody);
 
     var pictureDiv = document.createElement('div');
@@ -380,6 +381,25 @@ body.addEventListener('click', function(theEvent) {
         paragraphDiv.appendChild(userIcon);
         paragraphDiv.appendChild(reviewParagraph);
         reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j].text + " ";
+
+        //review tag buttons
+        var buttonForm = document.createElement('form');
+        paragraphDiv.appendChild(buttonForm);
+
+        var testReview = reviews[0];
+
+        var funny = document.createElement('button');
+        funny.setAttribute('class', 'btn btn-primary');
+        funny.setAttribute('class', 'funCount');
+        funny.setAttribute('type', 'button');
+        funny.setAttribute('id', j);
+        funny.textContent = "funny: " + recallReview.review[j].funny;
+
+        buttonForm.appendChild(funny);
+
+        //end button tags
+
+
       }
     } else if (recallReview.reviewer.length == 1) {
 
@@ -567,6 +587,24 @@ body.addEventListener('click', function(theEvent) {
         // starScore.appendChild(page);
         console.log(numberedStar);
       });
+
+    });
+    //add funny event listener
+    document.getElementById('review-body').addEventListener('click', function(funnyClick) {
+
+      var funButton = funnyClick.target.getAttribute('id');
+
+      for (j = 0; j < recallReview.review.length; j++) {
+
+        if (funButton == j) {
+          num = j.toString();
+          var updateFunny = document.getElementById(num);
+          recallReview.review[j].funny += 1;
+          updateFunny.textContent = "funny: " + recallReview.review[j].funny;
+
+          console.log(recallReview.review[j].funny);}
+    }
+
 
     });
   }
