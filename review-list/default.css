@@ -29,34 +29,7 @@
 .linked {
   color: white;
 }
-/*.centered-review {
-  border: 1px solid black;
-  width: 100%;
-  height: 150px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-}
 
-.writing {
-  border: 1px solid black;
-  width: 100%;
-  height: 100px;
-  margin-left: auto;;
-  margin-right: auto;
-  margin-top: 3px;
-  overflow: scroll;
+.fun-count {
+  margin-right: 5px;
 }
-
-.left-picture {
-  border: 1px solid black;
-  height: 100px;
-  width: 100%;
-  margin-left: auto;;
-  margin-right: 5%;
-  margin-top: 3px;
-}
-
-.hide-overflow {
-  overflow: scroll;
-}*/

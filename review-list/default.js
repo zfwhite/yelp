@@ -172,7 +172,11 @@ var reviews = [
 
 var home = document.getElementById('home');
 
-home.addEventListener('click', removeTop, removeSingle, removeLocation);
+home.addEventListener('click', function() {
+  removeTop();
+  removeSingle();
+  removeLocation();
+});
 
 //Search variables
 var searchButton = document.getElementById('search-button');
@@ -241,7 +245,7 @@ function reviewBox(reviewed) {
       var averageScore = Math.floor(reviews[i].score / reviews[i].reviewer.length);
       for (j = 0; j < averageScore; j++) {
         var rating = document.createElement('i');
-        rating.setAttribute('class', 'fa fa-star-o');
+        rating.setAttribute('class', 'fa fa-star');
         rating.setAttribute('aria-hidden', 'true');
         paragraphDiv.appendChild(rating);
       }
@@ -392,7 +396,7 @@ body.addEventListener('click', function(theEvent) {
 
         var funny = document.createElement('button');
         funny.setAttribute('class', 'btn btn-primary');
-        funny.setAttribute('class', 'funCount');
+        funny.setAttribute('class', 'fun-count');
         funny.setAttribute('type', 'button');
         funny.setAttribute('id', j);
         funny.textContent = "funny: " + recallReview.review[j].funny;
@@ -402,7 +406,7 @@ body.addEventListener('click', function(theEvent) {
         //useful
         var useful = document.createElement('button');
         useful.setAttribute('class', 'btn btn-primary');
-        useful.setAttribute('class', 'funCount');
+        useful.setAttribute('class', 'useful-count');
         useful.setAttribute('type', 'button');
         useful.setAttribute('id', ('useful' + j));
         useful.textContent = "useful: " + recallReview.review[j].useful;
@@ -439,7 +443,7 @@ body.addEventListener('click', function(theEvent) {
 
       var funny = document.createElement('button');
       funny.setAttribute('class', 'btn btn-primary');
-      funny.setAttribute('class', 'funCount');
+      funny.setAttribute('class', 'fun-count');
       funny.setAttribute('type', 'button');
       funny.setAttribute('id', 0);
       funny.textContent = "funny: " + recallReview.review[0].funny;
@@ -449,7 +453,7 @@ body.addEventListener('click', function(theEvent) {
       //useful
       var useful = document.createElement('button');
       useful.setAttribute('class', 'btn btn-primary');
-      useful.setAttribute('class', 'funCount');
+      useful.setAttribute('class', 'useful-count');
       useful.setAttribute('type', 'button');
       useful.setAttribute('id', ('useful' + 0));
       useful.textContent = "useful: " + recallReview.review[0].useful;
@@ -622,12 +626,7 @@ body.addEventListener('click', function(theEvent) {
         var hideStar = document.getElementById('star-menu');
         hideStar.classList.add('hidden');
         reviewBody.classList.remove('hidden');
-        // var page = document.createElement('p');
-        // page.textContent = numberedStar;
-        // starScore.appendChild(page);
-        console.log(numberedStar);
       });
-
     });
     //add funny event listener
     document.getElementById('review-body').addEventListener('click', function(funnyClick) {
@@ -650,7 +649,6 @@ body.addEventListener('click', function(theEvent) {
           }
         }
       }
-
     });
     //useful event listener
     document.getElementById('review-body').addEventListener('click', function(usefulClick) {
@@ -673,7 +671,6 @@ body.addEventListener('click', function(theEvent) {
           }
         }
       }
-
     });
   }
 });
@@ -905,6 +902,5 @@ addLocation.addEventListener('click', function() {
   locationNew.classList.add('hidden');
 
   updatedReviews(sameRestaurant.name);
-
   });
 });
