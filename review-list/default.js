@@ -571,7 +571,7 @@ body.addEventListener('click', function(theEvent) {
         var vanish = document.getElementById('top');
         vanish.classList.add('hidden');
 
-        writeReview(recallReview.name, numberedStar);
+        writeReview(recallReview.id, numberedStar);
       });
       //add
       var starScore = document.getElementById('star-menu');
@@ -657,7 +657,7 @@ function writeReview(recReview, numStar) {
   var reviewObj = { text: written, funny: 0};
 
   for (i = 0; i < reviews.length; i++) {
-    if (reviews[i].name.indexOf(recReview) !== -1) {
+    if (reviews[i].id.indexOf(recReview) !== -1) {
       reviews[i].review.push(reviewObj);
       reviews[i].reviewer.push(named);
       console.log(reviews[i].review);
@@ -841,7 +841,7 @@ addLocation.addEventListener('click', function() {
     var newName = document.getElementById('location-name');
     var newCategory = document.getElementById('location-category');
     var newDescription = document.getElementById('location-description');
-    var newId = newName.value.split(' ', 1);
+    var newId = newName.value.split(' ', 1) + Math.floor(Math.random() * 1000);
 
     var newRestaurant = {
     category: [newCategory.value],
