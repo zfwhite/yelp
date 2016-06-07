@@ -7,7 +7,7 @@ var reviews = [
     id: "wendys",
     image: 'images/Wendys-logo.png',
     reviewer: ['Karen', 'Megin', 'Parker', 'Kelly', 'Roger'],
-    review: ['Kind of greasy but you know what you are getting', 'Truly the most savory burger you will ever taste!!!', 'The Frostys are truly to die for.', 'Service was terrible!!!!!! THIS FAMILY WILL NOT BE RETURNING!', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'],
+    review: [{ text: 'Kind of greasy but you know what you are getting', funny: 0}, { text: 'Truly the most savory burger you will ever taste!!!', funny: 0}, { text: 'The Frostys are truly to die for.', funny: 0}, { text: 'Service was terrible!!!!!! THIS FAMILY WILL NOT BE RETURNING!', funny: 0}],
     score: 15
   },
   {
@@ -762,27 +762,9 @@ addLocation.addEventListener('click', function() {
   formDiv.appendChild(locationButton);
 
 
-  //location image
-  /*var locationImage = document.createElement('input');
-  locationImage.setAttribute('type', 'file');
-  locationImage.setAttribute('id', 'location-image');
-  formDiv.appendChild(locationImage);*/
-
-
-
-  //location example
-  /*category: ['food', 'sandwiches'],
-  name: "Panera Bread",
-  type: "restaurant",
-  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  id: "panera",
-  image: 'images/panera-logo.png',
-  reviewer: ['Amy'],
-  review: ['Great soup, good sandwiches, will return!'],
-  score: 4*/
-
-
   //submit new location to array
+  //will cause issue if two restaurants with the same first word in their name
+  //are added
   var submitLocation = document.getElementById('submit-location');
 
   submitLocation.addEventListener('click', function() {
@@ -815,4 +797,23 @@ addLocation.addEventListener('click', function() {
   console.log(reviews);
 
   });
+});
+//review-tag testing below
+
+
+var testReview = reviews[0];
+
+var funny = document.createElement('button');
+funny.setAttribute('class', 'btn btn-primary');
+funny.setAttribute('id', 'funCount');
+funny.textContent = "funny: " + testReview.review[1].funny;
+
+var funBox = document.getElementById('fun');
+funBox.appendChild(funny);
+
+funny.addEventListener('click', function() {
+  testReview.review[1].funny += 1;
+  funny.textContent = "funny: " + testReview.review[1].funny;
+
+  console.log(testReview.review[1].funny);
 });
