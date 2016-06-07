@@ -602,6 +602,8 @@ body.addEventListener('click', function(theEvent) {
           recallReview.review[j].funny += 1;
           updateFunny.textContent = "funny: " + recallReview.review[j].funny;
 
+          funnyCount(recallReview);
+
           console.log(recallReview.review[j].funny);}
     }
 
@@ -609,6 +611,17 @@ body.addEventListener('click', function(theEvent) {
     });
   }
 });
+
+function funnyCount(update) {
+
+  for (i = 0; i < reviews.length; i++) {
+
+    if (reviews[i].name == update.name) {
+      reviews[i] = update;
+      console.log(reviews[i].review);
+    }
+  }
+}
 
 //removes hidden class from review text div
 function write(review) {
@@ -837,7 +850,7 @@ addLocation.addEventListener('click', function() {
 
   });
 });
-//review-tag testing below
+/*review-tag testing below
 
 
 var testReview = reviews[0];
@@ -856,3 +869,4 @@ funny.addEventListener('click', function() {
 
   console.log(testReview.review[1].funny);
 });
+*/
