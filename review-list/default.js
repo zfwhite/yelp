@@ -417,6 +417,23 @@ body.addEventListener('click', function(theEvent) {
       paragraphDiv.appendChild(userIcon);
       paragraphDiv.appendChild(reviewParagraph);
       reviewParagraph.textContent = recallReview.reviewer + ": " + recallReview.review[0].text + " ";
+
+      //review tag buttons
+      var buttonForm = document.createElement('form');
+      paragraphDiv.appendChild(buttonForm);
+
+      var testReview = reviews[0];
+
+      var funny = document.createElement('button');
+      funny.setAttribute('class', 'btn btn-primary');
+      funny.setAttribute('class', 'funCount');
+      funny.setAttribute('type', 'button');
+      funny.setAttribute('id', 0);
+      funny.textContent = "funny: " + recallReview.review[0].funny;
+
+      buttonForm.appendChild(funny);
+
+      //end button tags
     }
 
     var panelFooter = document.createElement('div');
