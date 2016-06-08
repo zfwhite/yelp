@@ -398,9 +398,12 @@ body.addEventListener('click', function(theEvent) {
     } else if (recallReview.reviewer.length == 1) {
 
       //if there is only a single review
+
+      var bod = document.getElementById('review-body');
+
       var paragraphDiv = document.createElement('div');
       paragraphDiv.setAttribute('class', 'col-xs-10');
-      panelBody.appendChild(paragraphDiv);
+      bod.appendChild(paragraphDiv);
 
 
       var reviewParagraph = document.createElement('p');
@@ -482,44 +485,8 @@ body.addEventListener('click', function(theEvent) {
     reviewForm.setAttribute('id', 'review-type');
     form.appendChild(reviewForm);
 
-
-//stars
-    var showStars = document.createElement('div');
-    showStars.setAttribute('class', 'hover-class row');
-    showStars.setAttribute('id', 'star-menu');
-    reviewHeading.appendChild(showStars);
-
-    var starOne = document.createElement('i');
-    starOne.setAttribute('id', '1');
-    starOne.setAttribute('class', 'fa fa-star-o star');
-    starOne.setAttribute('aria-hidden', 'true');
-    showStars.appendChild(starOne);
-
-    var starTwo = document.createElement('i');
-    starTwo.setAttribute('id', '2');
-    starTwo.setAttribute('class', 'fa fa-star-o star');
-    starTwo.setAttribute('aria-hidden', 'true');
-    showStars.appendChild(starTwo);
-
-    var starThree = document.createElement('i');
-    starThree.setAttribute('id', '3');
-    starThree.setAttribute('class', 'fa fa-star-o star');
-    starThree.setAttribute('aria-hidden', 'true');
-    showStars.appendChild(starThree);
-
-    var starFour = document.createElement('i');
-    starFour.setAttribute('id', '4');
-    starFour.setAttribute('class', 'fa fa-star-o star');
-    starFour.setAttribute('aria-hidden', 'true');
-    showStars.appendChild(starFour);
-
-    var starFive = document.createElement('i');
-    starFive.setAttribute('id', '5');
-    starFive.setAttribute('class', 'fa fa-star-o star');
-    starFive.setAttribute('aria-hidden', 'true');
-    showStars.appendChild(starFive);
-
-
+    //stars
+    createStars(reviewHeading);
 //
     var textArea = document.createElement('textarea');
     textArea.setAttribute('class', 'form-control');
@@ -620,6 +587,44 @@ body.addEventListener('click', function(theEvent) {
   }
 });
 
+//stars
+function createStars(reviewHeading) {
+  var showStars = document.createElement('div');
+  showStars.setAttribute('class', 'hover-class row');
+  showStars.setAttribute('id', 'star-menu');
+  reviewHeading.appendChild(showStars);
+
+  var starOne = document.createElement('i');
+  starOne.setAttribute('id', '1');
+  starOne.setAttribute('class', 'fa fa-star-o star');
+  starOne.setAttribute('aria-hidden', 'true');
+  showStars.appendChild(starOne);
+
+  var starTwo = document.createElement('i');
+  starTwo.setAttribute('id', '2');
+  starTwo.setAttribute('class', 'fa fa-star-o star');
+  starTwo.setAttribute('aria-hidden', 'true');
+  showStars.appendChild(starTwo);
+
+  var starThree = document.createElement('i');
+  starThree.setAttribute('id', '3');
+  starThree.setAttribute('class', 'fa fa-star-o star');
+  starThree.setAttribute('aria-hidden', 'true');
+  showStars.appendChild(starThree);
+
+  var starFour = document.createElement('i');
+  starFour.setAttribute('id', '4');
+  starFour.setAttribute('class', 'fa fa-star-o star');
+  starFour.setAttribute('aria-hidden', 'true');
+  showStars.appendChild(starFour);
+
+  var starFive = document.createElement('i');
+  starFive.setAttribute('id', '5');
+  starFive.setAttribute('class', 'fa fa-star-o star');
+  starFive.setAttribute('aria-hidden', 'true');
+  showStars.appendChild(starFive);
+}
+
 // review tag function
 function tagCounter(id, comment) {
   for (j = 0; j < comment.review.length; j++) {
@@ -678,6 +683,7 @@ function writeReview(recReview, numStar) {
       reviews[i].review.push(reviewObj);
       reviews[i].reviewer.push(named);
       reviews[i].score += countScore;
+      removeTop();
       updatedReviews(reviews[i].name);
       return reviews[i];
     }
@@ -741,7 +747,7 @@ function updatedReviews(newReview) {
       addReview.textContent = "View reviews"; //add review button
       panelFooter.appendChild(addReview);
 
-      removeTop();
+      //removeTop();
       removeLocation();
     }
   }
