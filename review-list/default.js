@@ -242,10 +242,18 @@ function reviewBox(reviewed) {
       reviewParagraph.setAttribute('id', 'review');
 
       //stars
-      var averageScore = Math.floor(reviews[i].score / reviews[i].reviewer.length);
-      for (j = 0; j < averageScore; j++) {
+      //check for whole number
+      //update to show half stars
+      var averageScore = reviews[i].score / reviews[i].reviewer.length;
+      for (j = 0; j < Math.floor(averageScore); j++) {
         var rating = document.createElement('i');
         rating.setAttribute('class', 'fa fa-star');
+        rating.setAttribute('aria-hidden', 'true');
+        paragraphDiv.appendChild(rating);
+      }
+      if ((averageScore - Math.floor(averageScore)) % 1 > .3) {
+        var rating = document.createElement('i');
+        rating.setAttribute('class', 'fa fa-star-half');
         rating.setAttribute('aria-hidden', 'true');
         paragraphDiv.appendChild(rating);
       }
