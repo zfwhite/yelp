@@ -340,43 +340,9 @@ body.addEventListener('click', function(theEvent) {
     container.setAttribute('class', 'container-fluid');
     mainDiv.appendChild(container);
 
-    var row = document.createElement('div');
-    row.setAttribute('id', 'first');
-    row.setAttribute('class', 'row');
-    container.appendChild(row);
-
-    var panelPrimary = document.createElement('div');
-    panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
-    row.appendChild(panelPrimary);
-
-    var panelHeading = document.createElement('div');
-    panelHeading.setAttribute('class', 'panel-heading well');
-    panelPrimary.appendChild(panelHeading);
-
-    var headingText = document.createElement('h4');
-    headingText.setAttribute('class', 'text-center');
-    panelHeading.appendChild(headingText);
-
-    var headingLink = document.createElement('a');
-    headingLink.setAttribute('href', 'http://www.google.com');
-    headingLink.setAttribute('class', 'linked');
-    headingLink.textContent = recallReview.name;
-    headingText.appendChild(headingLink);
-
-    var panelBody = document.createElement('div');
-    panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
-    panelBody.setAttribute('id', 'review-body')
-    panelPrimary.appendChild(panelBody);
-
-    var pictureDiv = document.createElement('div');
-    pictureDiv.setAttribute('class', 'col-xs-2');
-    panelBody.appendChild(pictureDiv);
-
-    //gives image of searched place
-    var image = document.createElement('img');
-    image.setAttribute('class', 'img-responsive');
-    image.setAttribute('src', recallReview.image);
-    pictureDiv.appendChild(image);
+    //big element creation
+    createDiv('first', recallReview);
+    //end element creation
 
     //check for multiple reviews/reviewers
     if (recallReview.reviewer.length > 1) {
@@ -384,9 +350,11 @@ body.addEventListener('click', function(theEvent) {
       //loop for multiple reviews
       for (j = 0; j < recallReview.reviewer.length; j++) {
 
+        var bod = document.getElementById('review-body');
+
         var paragraphDiv = document.createElement('div');
         paragraphDiv.setAttribute('class', 'col-xs-10');
-        panelBody.appendChild(paragraphDiv);
+        bod.appendChild(paragraphDiv);
 
         var reviewParagraph = document.createElement('p');
         reviewParagraph.setAttribute('id', 'review');
@@ -473,9 +441,10 @@ body.addEventListener('click', function(theEvent) {
       //end button tags
     }
 
+    var prime = document.getElementById('primed');
     var panelFooter = document.createElement('div');
     panelFooter.setAttribute('class', 'panel-footer well clearfix');
-    panelPrimary.appendChild(panelFooter);
+    prime.appendChild(panelFooter);
 
     var addReview = document.createElement('button');
     addReview.setAttribute('class', 'btn btn-primary pull-right');
@@ -726,47 +695,16 @@ function updatedReviews(newReview) {
 
       var container = document.createElement('div');
       container.setAttribute('class', 'container-fluid');
+      container.setAttribute('id', 'contained');
       mainDiv.appendChild(container);
 
-      var row = document.createElement('div');
-      row.setAttribute('class', 'row');
-      container.appendChild(row);
-
-      var panelPrimary = document.createElement('div');
-      panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
-      row.appendChild(panelPrimary);
-
-      var panelHeading = document.createElement('div');
-      panelHeading.setAttribute('class', 'panel-heading well');
-      panelPrimary.appendChild(panelHeading);
-
-      var headingText = document.createElement('h4');
-      headingText.setAttribute('class', 'text-center');
-      panelHeading.appendChild(headingText);
-
-      var headingLink = document.createElement('a');
-      headingLink.setAttribute('href', 'http://www.google.com');
-      headingLink.setAttribute('class', 'linked');
-      headingLink.textContent = reviews[i].name;
-      headingText.appendChild(headingLink);
-
-      var panelBody = document.createElement('div');
-      panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
-      panelPrimary.appendChild(panelBody);
-
-      var pictureDiv = document.createElement('div');
-      pictureDiv.setAttribute('class', 'col-xs-2');
-      panelBody.appendChild(pictureDiv);
-
-      //gives image of searched place
-      var image = document.createElement('img');
-      image.setAttribute('class', 'img-responsive');
-      image.setAttribute('src', reviews[i].image);
-      pictureDiv.appendChild(image);
-
+      //big element creation
+      createDiv('second', reviews[i]);
+      //end element creation
+      var bod = document.getElementById('review-body');
       var paragraphDiv = document.createElement('div');
       paragraphDiv.setAttribute('class', 'col-xs-10');
-      panelBody.appendChild(paragraphDiv);
+      bod.appendChild(paragraphDiv);
 
       var reviewParagraph = document.createElement('p');
       reviewParagraph.setAttribute('id', 'review');
@@ -791,9 +729,11 @@ function updatedReviews(newReview) {
       paragraphDiv.appendChild(reviewParagraph);
       reviewParagraph.textContent = reviews[i].description;
 
+      var prime = document.getElementById('primed');
+
       var panelFooter = document.createElement('div');
       panelFooter.setAttribute('class', 'panel-footer well clearfix');
-      panelPrimary.appendChild(panelFooter);
+      prime.appendChild(panelFooter);
 
       var addReview = document.createElement('button');
       addReview.setAttribute('class', 'btn btn-primary pull-right');
@@ -807,9 +747,53 @@ function updatedReviews(newReview) {
   }
 }
 
+//creation function
+
+function createDiv(label, arr) {
+
+  var container = document.getElementById('contained');
+
+  var row = document.createElement('div');
+  row.setAttribute('id', label);
+  row.setAttribute('class', 'row');
+  container.appendChild(row);
+
+  var panelPrimary = document.createElement('div');
+  panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
+  panelPrimary.setAttribute('id', 'primed');
+  row.appendChild(panelPrimary);
+
+  var panelHeading = document.createElement('div');
+  panelHeading.setAttribute('class', 'panel-heading well');
+  panelPrimary.appendChild(panelHeading);
+
+  var headingText = document.createElement('h4');
+  headingText.setAttribute('class', 'text-center');
+  panelHeading.appendChild(headingText);
+
+  var headingLink = document.createElement('a');
+  headingLink.setAttribute('href', 'http://www.google.com');
+  headingLink.setAttribute('class', 'linked');
+  headingLink.textContent = arr.name;
+  headingText.appendChild(headingLink);
+
+  var panelBody = document.createElement('div');
+  panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
+  panelBody.setAttribute('id', 'review-body')
+  panelPrimary.appendChild(panelBody);
+
+  var pictureDiv = document.createElement('div');
+  pictureDiv.setAttribute('class', 'col-xs-2');
+  panelBody.appendChild(pictureDiv);
+
+  //gives image of searched place
+  var image = document.createElement('img');
+  image.setAttribute('class', 'img-responsive');
+  image.setAttribute('src', arr.image);
+  pictureDiv.appendChild(image);
+}
 
 //add location
-
 var addLocation = document.getElementById('addLocation');
 
 addLocation.addEventListener('click', function() {
@@ -884,48 +868,43 @@ addLocation.addEventListener('click', function() {
   formDiv.appendChild(locationButton);
 });
 
-
-
 //submit new location to array
-
-body.addEventListener('click', function(theEvent) {
+body.addEventListener('click', function(locationEvent) {
   var submitLocation = document.getElementById('submit-location');
-  var locationClick = theEvent.target;
+  var locationClick = locationEvent.target;
   newLocation(locationClick, submitLocation);
-
 });
 
 function newLocation(click, id) {
+  if (click == id) {
+    var newName = document.getElementById('location-name');
+    var newCategory = document.getElementById('location-category');
+    var newDescription = document.getElementById('location-description');
+    var newId = newName.value.split(' ', 1) + Math.floor(Math.random() * 1000);
+    var categoryArray = newCategory.value.split(' ', 2);
 
-    if (click == id) {
-      var newName = document.getElementById('location-name');
-      var newCategory = document.getElementById('location-category');
-      var newDescription = document.getElementById('location-description');
-      var newId = newName.value.split(' ', 1) + Math.floor(Math.random() * 1000);
-      var categoryArray = newCategory.value.split(' ', 2);
+    var newRestaurant = {
+      category: categoryArray,
+      name: newName.value,
+      type: "restaurant",
+      description: newDescription.value,
+      id: newId.toString(),
+      image: "",
+      reviewer: [],
+      review: [],
+      score: 0
+    };
+    console.log(categoryArray);
 
-      var newRestaurant = {
-        category: categoryArray,
-        name: newName.value,
-        type: "restaurant",
-        description: newDescription.value,
-        id: newId.toString(),
-        image: "",
-        reviewer: [],
-        review: [],
-        score: 0
-      };
-      console.log(categoryArray);
+    var sameRestaurant = newRestaurant;
+    reviews.push(newRestaurant);
 
-      var sameRestaurant = newRestaurant;
-      reviews.push(newRestaurant);
+    var locationNew = document.getElementById('location-div');
+    locationNew.classList.add('hidden');
 
-      var locationNew = document.getElementById('location-div');
-      locationNew.classList.add('hidden');
-
-      updatedReviews(sameRestaurant.name);
-    }
-    else {
-      return false;
-    }
+    updatedReviews(sameRestaurant.name);
+  }
+  else {
+    return false;
+  }
 }
