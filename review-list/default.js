@@ -799,14 +799,7 @@ function createDiv(label, arr) {
   pictureDiv.appendChild(image);
 }
 
-//add location
-var addLocation = document.getElementById('addLocation');
-
-addLocation.addEventListener('click', function() {
-  removeTop();
-  removeSingle();
-  removeLocation();
-
+function createLocation() {
   var locationDiv = document.createElement('div');
   locationDiv.setAttribute('class', 'container-fluid');
   locationDiv.setAttribute('id', 'location-div');
@@ -872,14 +865,7 @@ addLocation.addEventListener('click', function() {
   locationButton.setAttribute('value', 'send');
   locationButton.textContent = "Submit";
   formDiv.appendChild(locationButton);
-});
-
-//submit new location to array
-body.addEventListener('click', function(locationEvent) {
-  var submitLocation = document.getElementById('submit-location');
-  var locationClick = locationEvent.target;
-  newLocation(locationClick, submitLocation);
-});
+}
 
 function newLocation(click, id) {
   if (click == id) {
@@ -900,8 +886,6 @@ function newLocation(click, id) {
       review: [],
       score: 0
     };
-    console.log(categoryArray);
-
     var sameRestaurant = newRestaurant;
     reviews.push(newRestaurant);
 
@@ -914,3 +898,19 @@ function newLocation(click, id) {
     return false;
   }
 }
+
+//add location
+var addLocation = document.getElementById('addLocation');
+addLocation.addEventListener('click', function() {
+  removeTop();
+  removeSingle();
+  removeLocation();
+  createLocation();
+});
+
+//submit new location to array
+body.addEventListener('click', function(locationEvent) {
+  var submitLocation = document.getElementById('submit-location');
+  var locationClick = locationEvent.target;
+  newLocation(locationClick, submitLocation);
+});
