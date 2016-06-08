@@ -642,48 +642,44 @@ body.addEventListener('click', function(theEvent) {
     document.getElementById('review-body').addEventListener('click', function(funnyClick) {
 
       var funButton = funnyClick.target.getAttribute('id');
-
-      for (j = 0; j < recallReview.review.length; j++) {
-
-        if (funButton == j) {
-          num = j.toString();
-          var updateFunny = document.getElementById(num);
-
-          if (recallReview.review[j].funny < 1) {
-            recallReview.review[j].funny += 1;
-            updateFunny.textContent = "funny: " + recallReview.review[j].funny;
-
-            funnyCount(recallReview);
-
-            console.log(recallReview.review[j].funny);
-          }
-        }
-      }
+      tagCounter(funButton, recallReview);
     });
     //useful event listener
     document.getElementById('review-body').addEventListener('click', function(usefulClick) {
 
       var usefulButton = usefulClick.target.getAttribute('id');
-
-      for (j = 0; j < recallReview.review.length; j++) {
-
-        if (usefulButton == ('useful' + j)) {
-          num = 'useful' + j.toString();
-          var updateUseful = document.getElementById(num);
-
-          if (recallReview.review[j].useful < 1) {
-            recallReview.review[j].useful += 1;
-            updateUseful.textContent = "useful: " + recallReview.review[j].useful;
-
-            funnyCount(recallReview);
-
-            console.log(recallReview.review[j].useful);
-          }
-        }
-      }
+      tagCounter(usefulButton, recallReview);
     });
   }
 });
+
+// review tag function
+function tagCounter(id, comment) {
+  for (j = 0; j < comment.review.length; j++) {
+
+    if (id == ('useful' + j)) {
+      num = 'useful' + j.toString();
+      var updateUseful = document.getElementById(num);
+
+      if (comment.review[j].useful < 1) {
+        comment.review[j].useful += 1;
+        updateUseful.textContent = "useful: " + comment.review[j].useful;
+
+        funnyCount(comment);
+      }
+    } else if (id == j) {
+      num = j.toString();
+      var updateFunny = document.getElementById(num);
+
+      if (comment.review[j].funny < 1) {
+        comment.review[j].funny += 1;
+        updateFunny.textContent = "funny: " + comment.review[j].funny;
+
+        funnyCount(comment);
+      }
+    }
+  }
+}
 
 function funnyCount(update) {
 
