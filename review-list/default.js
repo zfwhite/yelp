@@ -640,13 +640,11 @@ body.addEventListener('click', function(theEvent) {
     });
     //add funny event listener
     document.getElementById('review-body').addEventListener('click', function(funnyClick) {
-
       var funButton = funnyClick.target.getAttribute('id');
       tagCounter(funButton, recallReview);
     });
     //useful event listener
     document.getElementById('review-body').addEventListener('click', function(usefulClick) {
-
       var usefulButton = usefulClick.target.getAttribute('id');
       tagCounter(usefulButton, recallReview);
     });
@@ -682,7 +680,6 @@ function tagCounter(id, comment) {
 }
 
 function funnyCount(update) {
-
   for (i = 0; i < reviews.length; i++) {
 
     if (reviews[i].name == update.name) {
@@ -885,38 +882,50 @@ addLocation.addEventListener('click', function() {
   locationButton.setAttribute('value', 'send');
   locationButton.textContent = "Submit";
   formDiv.appendChild(locationButton);
+});
 
 
-  //submit new location to array
+
+//submit new location to array
+
+body.addEventListener('click', function(theEvent) {
   var submitLocation = document.getElementById('submit-location');
+  var locationClick = theEvent.target;
+  newLocation(locationClick, submitLocation);
 
-  submitLocation.addEventListener('click', function() {
+});
 
-    var newName = document.getElementById('location-name');
-    var newCategory = document.getElementById('location-category');
-    var newDescription = document.getElementById('location-description');
-    var newId = newName.value.split(' ', 1) + Math.floor(Math.random() * 1000);
-    var categoryArray = newCategory.value.split(' ', 2);
+function newLocation(click, id) {
 
-    var newRestaurant = {
-    category: categoryArray,
-    name: newName.value,
-    type: "restaurant",
-    description: newDescription.value,
-    id: newId.toString(),
-    image: "",
-    reviewer: [],
-    review: [],
-    score: 0
-  };
+    if (click == id) {
+      var newName = document.getElementById('location-name');
+      var newCategory = document.getElementById('location-category');
+      var newDescription = document.getElementById('location-description');
+      var newId = newName.value.split(' ', 1) + Math.floor(Math.random() * 1000);
+      var categoryArray = newCategory.value.split(' ', 2);
+
+      var newRestaurant = {
+        category: categoryArray,
+        name: newName.value,
+        type: "restaurant",
+        description: newDescription.value,
+        id: newId.toString(),
+        image: "",
+        reviewer: [],
+        review: [],
+        score: 0
+      };
       console.log(categoryArray);
 
-  var sameRestaurant = newRestaurant;
-  reviews.push(newRestaurant);
+      var sameRestaurant = newRestaurant;
+      reviews.push(newRestaurant);
 
-  var locationNew = document.getElementById('location-div');
-  locationNew.classList.add('hidden');
+      var locationNew = document.getElementById('location-div');
+      locationNew.classList.add('hidden');
 
-  updatedReviews(sameRestaurant.name);
-  });
-});
+      updatedReviews(sameRestaurant.name);
+    }
+    else {
+      return false;
+    }
+}
