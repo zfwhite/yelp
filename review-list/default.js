@@ -866,7 +866,7 @@ addLocation.addEventListener('click', function() {
   locationCategory.setAttribute('type', 'text');
   locationCategory.setAttribute('id', 'location-category');
   locationCategory.setAttribute('class', 'form-control');
-  locationCategory.setAttribute('placeholder', 'Category');
+  locationCategory.setAttribute('placeholder', 'Input up to two categories');
   formDiv.appendChild(locationCategory);
 
   var locationDescription = document.createElement('textarea');
@@ -900,9 +900,10 @@ addLocation.addEventListener('click', function() {
     var newCategory = document.getElementById('location-category');
     var newDescription = document.getElementById('location-description');
     var newId = newName.value.split(' ', 1) + Math.floor(Math.random() * 1000);
+    var categoryArray = newCategory.value.split(' ', 2);
 
     var newRestaurant = {
-    category: [newCategory.value],
+    category: categoryArray,
     name: newName.value,
     type: "restaurant",
     description: newDescription.value,
@@ -912,6 +913,7 @@ addLocation.addEventListener('click', function() {
     review: [],
     score: 0
   };
+      console.log(categoryArray);
 
   var sameRestaurant = newRestaurant;
   reviews.push(newRestaurant);
