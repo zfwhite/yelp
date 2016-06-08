@@ -192,7 +192,9 @@ function reviewBox(reviewed) {
 
 
   for (var i = 0; i < reviews.length; i++) {
-    if (reviews[i].name.toLowerCase().indexOf(reviewed.value.toLowerCase()) !== -1) {
+
+    var checkCategory = reviews[i];
+    if (reviews[i].name.toLowerCase().indexOf(reviewed.value.toLowerCase()) !== -1 || checkCategory.category[0] === reviewed.value.toLowerCase() || checkCategory.category[1] === reviewed.value.toLowerCase() ) {
 
       var container = document.createElement('div');
       container.setAttribute('class', 'container-fluid');
