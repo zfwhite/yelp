@@ -364,45 +364,7 @@ function overhaul(recallReview) {
     reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j].text + " ";
 
     //review tag buttons
-    /*funnyButton(paragraphDiv);
-
-    function funnyButton(append) {
-      var buttonForm = document.createElement('form');
-      append.appendChild(buttonForm);
-
-      var funny = document.createElement('button');
-      funny.setAttribute('class', 'btn btn-primary');
-      funny.setAttribute('class', 'fun-count');
-      funny.setAttribute('type', 'button');
-      funny.setAttribute('id', j);
-      funny.textContent = "funny: " + recallReview.review[j].funny;
-
-      buttonForm.appendChild(funny);
-    }*/
-
-    //funny
-    var buttonForm = document.createElement('form');
-    paragraphDiv.appendChild(buttonForm);
-
-    var funny = document.createElement('button');
-    funny.setAttribute('class', 'btn btn-primary');
-    funny.setAttribute('class', 'fun-count');
-    funny.setAttribute('type', 'button');
-    funny.setAttribute('id', j);
-    funny.textContent = "funny: " + recallReview.review[j].funny;
-
-    buttonForm.appendChild(funny);
-
-    //useful
-    var useful = document.createElement('button');
-    useful.setAttribute('class', 'btn btn-primary');
-    useful.setAttribute('class', 'useful-count');
-    useful.setAttribute('type', 'button');
-    useful.setAttribute('id', ('useful' + j));
-    useful.textContent = "useful: " + recallReview.review[j].useful;
-
-    buttonForm.appendChild(useful);
-    //end button tags
+    buttons(paragraphDiv, recallReview);
   }
 
   var prime = document.getElementById('primed');
@@ -545,6 +507,30 @@ function overhaul(recallReview) {
     var usefulButton = usefulClick.target.getAttribute('id');
     tagCounter(usefulButton, recallReview);
   });
+}
+
+//funny button
+function buttons(append, revPerson) {
+  var buttonForm = document.createElement('form');
+  append.appendChild(buttonForm);
+
+  var funny = document.createElement('button');
+  funny.setAttribute('class', 'btn btn-primary');
+  funny.setAttribute('class', 'fun-count');
+  funny.setAttribute('type', 'button');
+  funny.setAttribute('id', j);
+  funny.textContent = "funny: " + revPerson.review[j].funny;
+
+  buttonForm.appendChild(funny);
+
+  var useful = document.createElement('button');
+  useful.setAttribute('class', 'btn btn-primary');
+  useful.setAttribute('class', 'useful-count');
+  useful.setAttribute('type', 'button');
+  useful.setAttribute('id', ('useful' + j));
+  useful.textContent = "useful: " + revPerson.review[j].useful;
+
+  buttonForm.appendChild(useful);
 }
 
 //stars
