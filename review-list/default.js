@@ -168,19 +168,15 @@ var reviews = [
   //List of places with reviews
 ];
 
+var body = document.getElementsByTagName('body')[0];
 var home = document.getElementById('home');
+var searchButton = document.getElementById('search-button');
 
 home.addEventListener('click', function() {
   remove('top');
   remove('single');
   remove('location-div');
 });
-
-//Search variables
-var searchButton = document.getElementById('search-button');
-var searchItem = document.getElementById('search-reviews');
-
-var body = document.getElementsByTagName('body')[0];
 
 function upperDiv(id) {
   var mainDiv = document.createElement('div');
@@ -193,71 +189,76 @@ function reviewBox(reviewed) {
 
   reviews.forEach(function(review) {
     if (review.name.toLowerCase().indexOf(reviewed.value.toLowerCase()) !== -1 || review.category[0] === reviewed.value.toLowerCase() || review.category[1] === reviewed.value.toLowerCase() ) {
-
-      var container = document.createElement('div');
-      container.setAttribute('class', 'container-fluid');
-      document.getElementById('top').appendChild(container);
-
-      var row = document.createElement('div');
-      row.setAttribute('class', 'row');
-      container.appendChild(row);
-
-      var panelPrimary = document.createElement('div');
-      panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
-      row.appendChild(panelPrimary);
-
-      var panelHeading = document.createElement('div');
-      panelHeading.setAttribute('class', 'panel-heading well');
-      panelPrimary.appendChild(panelHeading);
-
-      var headingText = document.createElement('h4');
-      headingText.setAttribute('class', 'text-center');
-      panelHeading.appendChild(headingText);
-
-      var headingLink = document.createElement('a');
-      headingLink.setAttribute('href', 'http://www.google.com');
-      headingLink.setAttribute('class', 'linked');
-      headingLink.textContent = review.name;
-      headingText.appendChild(headingLink);
-
-      var panelBody = document.createElement('div');
-      panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
-      panelPrimary.appendChild(panelBody);
-
-      var pictureDiv = document.createElement('div');
-      pictureDiv.setAttribute('class', 'col-xs-2');
-      panelBody.appendChild(pictureDiv);
-
-      //gives image of searched place
-      var image = document.createElement('img');
-      image.setAttribute('class', 'img-responsive');
-      image.setAttribute('src', review.image);
-      pictureDiv.appendChild(image);
-
-      var paragraphDiv = document.createElement('div');
-      paragraphDiv.setAttribute('class', 'col-xs-10');
-      panelBody.appendChild(paragraphDiv);
-
-      var reviewParagraph = document.createElement('p');
-      reviewParagraph.setAttribute('id', 'review');
-
-      //stars
-      averageStars(review, paragraphDiv);
-
-      paragraphDiv.appendChild(reviewParagraph);
-      reviewParagraph.textContent = review.description;
-
-      var panelFooter = document.createElement('div');
-      panelFooter.setAttribute('class', 'panel-footer well clearfix');
-      panelPrimary.appendChild(panelFooter);
-
-      var addReview = document.createElement('button');
-      addReview.setAttribute('class', 'btn btn-primary pull-right');
-      addReview.setAttribute('id', review.id)
-      addReview.textContent = "View reviews"; //add review button
-      panelFooter.appendChild(addReview);
+      createReview(review);
     }
   });
+}
+
+function createReview(review) {
+  var container = document.createElement('div');
+  container.setAttribute('class', 'container-fluid');
+  document.getElementById('top').appendChild(container);
+
+  var row = document.createElement('div');
+  row.setAttribute('class', 'row');
+  container.appendChild(row);
+
+  var panelPrimary = document.createElement('div');
+  panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
+  row.appendChild(panelPrimary);
+
+  var panelHeading = document.createElement('div');
+  panelHeading.setAttribute('class', 'panel-heading well');
+  panelPrimary.appendChild(panelHeading);
+
+  var headingText = document.createElement('h4');
+  headingText.setAttribute('class', 'text-center');
+  panelHeading.appendChild(headingText);
+
+  var headingLink = document.createElement('a');
+  headingLink.setAttribute('href', 'http://www.google.com');
+  headingLink.setAttribute('class', 'linked');
+  headingLink.textContent = review.name;
+  headingText.appendChild(headingLink);
+
+  var panelBody = document.createElement('div');
+  panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
+  panelPrimary.appendChild(panelBody);
+
+  var pictureDiv = document.createElement('div');
+  pictureDiv.setAttribute('class', 'col-xs-2');
+  panelBody.appendChild(pictureDiv);
+
+  //gives image of searched place
+  var image = document.createElement('img');
+  image.setAttribute('class', 'img-responsive');
+  image.setAttribute('src', review.image);
+  pictureDiv.appendChild(image);
+
+  var paragraphDiv = document.createElement('div');
+  paragraphDiv.setAttribute('class', 'col-xs-10');
+  panelBody.appendChild(paragraphDiv);
+
+  var reviewParagraph = document.createElement('p');
+  reviewParagraph.setAttribute('id', 'review');
+
+  //stars
+  averageStars(review, paragraphDiv);
+
+  paragraphDiv.appendChild(reviewParagraph);
+  reviewParagraph.textContent = review.description;
+
+  var panelFooter = document.createElement('div');
+  panelFooter.setAttribute('class', 'panel-footer well clearfix');
+  panelPrimary.appendChild(panelFooter);
+
+  var addReview = document.createElement('button');
+  addReview.setAttribute('class', 'btn btn-primary pull-right');
+  addReview.setAttribute('id', review.id)
+  addReview.textContent = "View reviews"; //add review button
+  panelFooter.appendChild(addReview);
+
+  return container;
 }
 
 function averageStars(review, append) {
@@ -279,6 +280,7 @@ function averageStars(review, append) {
 
 //Search button even listener
 searchButton.addEventListener('click', function(theEvent) {
+  var searchItem = document.getElementById('search-reviews');
   remove('top');
   remove('single');
   remove('location-div');
