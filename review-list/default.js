@@ -345,7 +345,6 @@ body.addEventListener('click', function(theEvent) {
     //end element creation
 
     //check for multiple reviews/reviewers
-    if (recallReview.reviewer.length > 1) {
 
       //loop for multiple reviews
       for (j = 0; j < recallReview.reviewer.length; j++) {
@@ -370,8 +369,6 @@ body.addEventListener('click', function(theEvent) {
         var buttonForm = document.createElement('form');
         paragraphDiv.appendChild(buttonForm);
 
-        var testReview = reviews[0];
-
         var funny = document.createElement('button');
         funny.setAttribute('class', 'btn btn-primary');
         funny.setAttribute('class', 'fun-count');
@@ -390,59 +387,8 @@ body.addEventListener('click', function(theEvent) {
         useful.textContent = "useful: " + recallReview.review[j].useful;
 
         buttonForm.appendChild(useful);
-
         //end button tags
-
-
       }
-    } else if (recallReview.reviewer.length == 1) {
-
-      //if there is only a single review
-
-      var bod = document.getElementById('review-body');
-
-      var paragraphDiv = document.createElement('div');
-      paragraphDiv.setAttribute('class', 'col-xs-10');
-      bod.appendChild(paragraphDiv);
-
-
-      var reviewParagraph = document.createElement('p');
-      reviewParagraph.setAttribute('id', 'review');
-      var userIcon = document.createElement('i');
-      userIcon.setAttribute('class', 'fa fa-user');
-      userIcon.setAttribute('aria-hidden', 'true');
-      paragraphDiv.appendChild(userIcon);
-      paragraphDiv.appendChild(reviewParagraph);
-      reviewParagraph.textContent = recallReview.reviewer + ": " + recallReview.review[0].text + " ";
-
-      //review tag buttons
-      //funny
-      var buttonForm = document.createElement('form');
-      paragraphDiv.appendChild(buttonForm);
-
-      var testReview = reviews[0];
-
-      var funny = document.createElement('button');
-      funny.setAttribute('class', 'btn btn-primary');
-      funny.setAttribute('class', 'fun-count');
-      funny.setAttribute('type', 'button');
-      funny.setAttribute('id', 0);
-      funny.textContent = "funny: " + recallReview.review[0].funny;
-
-      buttonForm.appendChild(funny);
-
-      //useful
-      var useful = document.createElement('button');
-      useful.setAttribute('class', 'btn btn-primary');
-      useful.setAttribute('class', 'useful-count');
-      useful.setAttribute('type', 'button');
-      useful.setAttribute('id', ('useful' + 0));
-      useful.textContent = "useful: " + recallReview.review[0].useful;
-
-      buttonForm.appendChild(useful);
-
-      //end button tags
-    }
 
     var prime = document.getElementById('primed');
     var panelFooter = document.createElement('div');
@@ -487,7 +433,7 @@ body.addEventListener('click', function(theEvent) {
 
     //stars
     createStars(reviewHeading);
-//
+
     var textArea = document.createElement('textarea');
     textArea.setAttribute('class', 'form-control');
     textArea.setAttribute('id', 'complete-review');
