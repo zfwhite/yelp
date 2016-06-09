@@ -371,13 +371,6 @@ function overhaul(recallReview) {
         }
       }
     });
-
-    revHeading.addEventListener('click', function(newEvent) {
-      numberedStar = newEvent.target.getAttribute('id');
-      var hideStar = document.getElementById('star-menu');
-      hideStar.classList.add('hidden');
-      document.getElementById('review-bod').classList.remove('hidden');
-    });
   });
   //add funny event listener
   document.getElementById('review-body').addEventListener('click', function(funnyClick) {
@@ -390,6 +383,18 @@ function overhaul(recallReview) {
     tagCounter(usefulButton, recallReview);
   });
 }
+
+document.body.addEventListener('click', function(thisEvent) {
+  if ($(thisEvent.target).hasClass('star')) {
+    console.log('it happened');
+    var numberedStar = thisEvent.target.getAttribute('id');
+    var hideStar = document.getElementById('star-menu');
+    hideStar.classList.add('hidden');
+    document.getElementById('review-bod').classList.remove('hidden');
+  } else {
+    return false;
+  }
+});
 
 function reviewContent(recallReview) {
   for (j = 0; j < recallReview.reviewer.length; j++) {
