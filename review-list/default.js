@@ -293,6 +293,8 @@ function remove(spot) {
   }
 }
 
+var keepArray = [];
+
 body.addEventListener('click', function(theEvent) {
   var readReviews = theEvent.target;
   var textId = theEvent.target.getAttribute('id');
@@ -302,6 +304,7 @@ body.addEventListener('click', function(theEvent) {
   for (i = 0; i < reviews.length; i++) {
     if (textId === reviews[i].id) {
       switchReview = reviews[i];
+      keepArray = reviews[i];
 
       remove('top');
       remove('single');
@@ -347,24 +350,6 @@ function overhaul(recallReview) {
     var numberedStar = 0;
 
     write(openText);
-
-    document.getElementById('submit-review').addEventListener('click', function (nextEvent) {
-
-      if(document.getElementById('complete-review').value === "") {
-        alert("Please input your review.");
-        return false;
-      }
-
-      if(document.getElementById('review-name').value === "") {
-        alert("Please input your name.");
-        return false;
-      }
-
-      var vanish = document.getElementById('top');
-      vanish.classList.add('hidden');
-
-      writeReview(recallReview.id, numberedStar);
-    });
     //add
     var starScore = document.getElementById('star-menu');
     var revHeading = document.getElementById('review-top');
@@ -428,6 +413,29 @@ function reviewContent(recallReview) {
     buttons(paragraphDiv, recallReview);
   }
 }
+
+body.addEventListener('click', function (nextEvent) {
+
+  if (document.getElementById('submit-review') == nextEvent.target) {
+
+    if(document.getElementById('complete-review').value === "") {
+      alert("Please input your review.");
+      return false;
+    }
+
+    if(document.getElementById('review-name').value === "") {
+      alert("Please input your name.");
+      return false;
+    }
+
+    var vanish = document.getElementById('top');
+    vanish.classList.add('hidden');
+
+    writeReview(keepArray.id, 0);
+  } else {
+    return false;
+  }
+});
 
 //hidden
 function reviewArea(recallReview) {
