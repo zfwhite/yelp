@@ -321,26 +321,7 @@ function overhaul(recallReview) {
 
   createDiv('first', recallReview);
 
-  for (j = 0; j < recallReview.reviewer.length; j++) {
-
-    var bod = document.getElementById('review-body');
-
-    var paragraphDiv = document.createElement('div');
-    paragraphDiv.setAttribute('class', 'col-xs-10');
-    bod.appendChild(paragraphDiv);
-
-    var reviewParagraph = document.createElement('p');
-    reviewParagraph.setAttribute('id', 'review');
-    var userIcon = document.createElement('i');
-    userIcon.setAttribute('class', 'fa fa-user');
-    userIcon.setAttribute('aria-hidden', 'true');
-    paragraphDiv.appendChild(userIcon);
-    paragraphDiv.appendChild(reviewParagraph);
-    reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j].text + " ";
-
-    //review tag buttons
-    buttons(paragraphDiv, recallReview);
-  }
+  reviewContent(recallReview);
 
   var prime = document.getElementById('primed');
   var panelFooter = document.createElement('div');
@@ -423,6 +404,29 @@ function overhaul(recallReview) {
     var usefulButton = usefulClick.target.getAttribute('id');
     tagCounter(usefulButton, recallReview);
   });
+}
+
+function reviewContent(recallReview) {
+  for (j = 0; j < recallReview.reviewer.length; j++) {
+
+    var bod = document.getElementById('review-body');
+
+    var paragraphDiv = document.createElement('div');
+    paragraphDiv.setAttribute('class', 'col-xs-10');
+    bod.appendChild(paragraphDiv);
+
+    var reviewParagraph = document.createElement('p');
+    reviewParagraph.setAttribute('id', 'review');
+    var userIcon = document.createElement('i');
+    userIcon.setAttribute('class', 'fa fa-user');
+    userIcon.setAttribute('aria-hidden', 'true');
+    paragraphDiv.appendChild(userIcon);
+    paragraphDiv.appendChild(reviewParagraph);
+    reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j].text + " ";
+
+    //review tag buttons
+    buttons(paragraphDiv, recallReview);
+  }
 }
 
 //hidden
