@@ -173,9 +173,9 @@ var reviews = [
 var home = document.getElementById('home');
 
 home.addEventListener('click', function() {
-  removeTop();
-  removeSingle();
-  removeLocation();
+  remove('top');
+  remove('single');
+  remove('location-div');
 });
 
 //Search variables
@@ -189,7 +189,6 @@ function reviewBox(reviewed) {
   var mainDiv = document.createElement('div');
   mainDiv.setAttribute('id', 'top');
   body.appendChild(mainDiv);
-
 
   for (var i = 0; i < reviews.length; i++) {
 
@@ -279,34 +278,16 @@ function reviewBox(reviewed) {
 
 //Search button even listener
 searchButton.addEventListener('click', function(theEvent) {
-  removeTop();
-  removeSingle();
-  removeLocation();
+  remove('top');
+  remove('single');
+  remove('location-div');
 
   //Run search Fx
   reviewBox(searchItem);
 });
 
-function removeTop() {
-  var element = document.getElementById('top');
-
-  //Check to ensure the existence of div before clearing previous reviews
-  if (typeof(element) != 'undefined' && element != null) {
-    element.parentNode.removeChild(element);
-  }
-}
-
-function removeLocation() {
-  var element = document.getElementById('location-div');
-
-  //Check to ensure the existence of div before clearing previous reviews
-  if (typeof(element) != 'undefined' && element != null) {
-    element.parentNode.removeChild(element);
-  }
-}
-
-function removeSingle() {
-  var element = document.getElementById('single');
+function remove(spot) {
+  var element = document.getElementById(spot);
 
   //Check to ensure the existence of div before clearing previous reviews
   if (typeof(element) != 'undefined' && element != null) {
@@ -324,8 +305,8 @@ body.addEventListener('click', function(theEvent) {
     if (textId === reviews[i].id) {
       switchReview = reviews[i];
 
-      removeTop();
-      removeSingle();
+      remove('top');
+      remove('single');
       overhaul(switchReview);
     }
   }
@@ -629,7 +610,7 @@ function writeReview(recReview, numStar) {
       reviews[i].review.push(reviewObj);
       reviews[i].reviewer.push(named);
       reviews[i].score += countScore;
-      removeTop();
+      remove('top');
       updatedReviews(reviews[i].name);
       return reviews[i];
     }
@@ -694,7 +675,7 @@ function updatedReviews(newReview) {
       panelFooter.appendChild(addReview);
 
       //removeTop();
-      removeLocation();
+      remove('location-div');
     }
   }
 }
@@ -848,9 +829,9 @@ function newLocation(click, id) {
 //add location
 var addLocation = document.getElementById('addLocation');
 addLocation.addEventListener('click', function() {
-  removeTop();
-  removeSingle();
-  removeLocation();
+  remove('top');
+  remove('single');
+  remove('location-div');
   createLocation();
 });
 
