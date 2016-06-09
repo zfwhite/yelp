@@ -182,11 +182,14 @@ var searchItem = document.getElementById('search-reviews');
 
 var body = document.getElementsByTagName('body')[0];
 
+function upperDiv(id) {
+  var mainDiv = document.createElement('div');
+  mainDiv.setAttribute('id', id);
+  body.appendChild(mainDiv);
+}
 //function to create review boxes
 function reviewBox(reviewed) {
-  var mainDiv = document.createElement('div');
-  mainDiv.setAttribute('id', 'top');
-  body.appendChild(mainDiv);
+  upperDiv('top');
 
   for (var i = 0; i < reviews.length; i++) {
 
@@ -195,7 +198,7 @@ function reviewBox(reviewed) {
 
       var container = document.createElement('div');
       container.setAttribute('class', 'container-fluid');
-      mainDiv.appendChild(container);
+      document.getElementById('top').appendChild(container);
 
       var row = document.createElement('div');
       row.setAttribute('class', 'row');
@@ -314,14 +317,12 @@ body.addEventListener('click', function(theEvent) {
 
 function overhaul(recallReview) {
 
-  var mainDiv = document.createElement('div');
-  mainDiv.setAttribute('id', 'top');
-  body.appendChild(mainDiv);
+  upperDiv('top');
 
   var container = document.createElement('div');
   container.setAttribute('id', 'contained');
   container.setAttribute('class', 'container-fluid');
-  mainDiv.appendChild(container);
+  document.getElementById('top').appendChild(container);
 
   //big element creation
   createDiv('first', recallReview);
@@ -619,9 +620,8 @@ function writeReview(recReview, numStar) {
 
 
 function updatedReviews(newReview) {
-  var mainDiv = document.createElement('div');
-  mainDiv.setAttribute('id', 'single');
-  body.appendChild(mainDiv);
+
+  upperDiv('single');
 
   for (var i = 0; i < reviews.length; i++) {
     if (reviews[i].name == newReview) {
@@ -629,7 +629,7 @@ function updatedReviews(newReview) {
       var container = document.createElement('div');
       container.setAttribute('class', 'container-fluid');
       container.setAttribute('id', 'contained');
-      mainDiv.appendChild(container);
+      document.getElementById('single').appendChild(container);
 
       //big element creation
       createDiv('second', reviews[i]);
