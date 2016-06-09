@@ -191,10 +191,10 @@ function upperDiv(id) {
 function reviewBox(reviewed) {
   upperDiv('top');
 
-  for (var i = 0; i < reviews.length; i++) {
+  reviews.forEach(function(review) {
 
-    var checkCategory = reviews[i];
-    if (reviews[i].name.toLowerCase().indexOf(reviewed.value.toLowerCase()) !== -1 || checkCategory.category[0] === reviewed.value.toLowerCase() || checkCategory.category[1] === reviewed.value.toLowerCase() ) {
+    var checkCategory = review;
+    if (review.name.toLowerCase().indexOf(reviewed.value.toLowerCase()) !== -1 || checkCategory.category[0] === reviewed.value.toLowerCase() || checkCategory.category[1] === reviewed.value.toLowerCase() ) {
 
       var container = document.createElement('div');
       container.setAttribute('class', 'container-fluid');
@@ -219,7 +219,7 @@ function reviewBox(reviewed) {
       var headingLink = document.createElement('a');
       headingLink.setAttribute('href', 'http://www.google.com');
       headingLink.setAttribute('class', 'linked');
-      headingLink.textContent = reviews[i].name;
+      headingLink.textContent = review.name;
       headingText.appendChild(headingLink);
 
       var panelBody = document.createElement('div');
@@ -233,7 +233,7 @@ function reviewBox(reviewed) {
       //gives image of searched place
       var image = document.createElement('img');
       image.setAttribute('class', 'img-responsive');
-      image.setAttribute('src', reviews[i].image);
+      image.setAttribute('src', review.image);
       pictureDiv.appendChild(image);
 
       var paragraphDiv = document.createElement('div');
@@ -244,10 +244,10 @@ function reviewBox(reviewed) {
       reviewParagraph.setAttribute('id', 'review');
 
       //stars
-      averageStars(reviews[i], paragraphDiv);
+      averageStars(review, paragraphDiv);
 
       paragraphDiv.appendChild(reviewParagraph);
-      reviewParagraph.textContent = reviews[i].description;
+      reviewParagraph.textContent = review.description;
 
       var panelFooter = document.createElement('div');
       panelFooter.setAttribute('class', 'panel-footer well clearfix');
@@ -255,11 +255,11 @@ function reviewBox(reviewed) {
 
       var addReview = document.createElement('button');
       addReview.setAttribute('class', 'btn btn-primary pull-right');
-      addReview.setAttribute('id', reviews[i].id)
+      addReview.setAttribute('id', review.id)
       addReview.textContent = "View reviews"; //add review button
       panelFooter.appendChild(addReview);
     }
-  }
+  });
 }
 
 function averageStars(review, append) {
@@ -284,16 +284,12 @@ searchButton.addEventListener('click', function(theEvent) {
   remove('top');
   remove('single');
   remove('location-div');
-
-  //Run search Fx
-  reviewBox(searchItem);
+  reviewBox(searchItem); //search Fx
 });
 
 function remove(spot) {
   var element = document.getElementById(spot);
-
-  //Check to ensure the existence of div before clearing previous reviews
-  if (typeof(element) != 'undefined' && element != null) {
+  if (typeof(element) != 'undefined' && element != null) {    //Check to ensure the existence of div before clearing previous reviews
     element.parentNode.removeChild(element);
   }
 }
@@ -324,9 +320,7 @@ function overhaul(recallReview) {
   container.setAttribute('class', 'container-fluid');
   document.getElementById('top').appendChild(container);
 
-  //big element creation
   createDiv('first', recallReview);
-  //end element creation
 
   for (j = 0; j < recallReview.reviewer.length; j++) {
 
