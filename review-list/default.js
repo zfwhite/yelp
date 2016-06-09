@@ -344,30 +344,29 @@ body.addEventListener('click', function(theEvent) {
     createDiv('first', recallReview);
     //end element creation
 
-    //check for multiple reviews/reviewers
+    for (j = 0; j < recallReview.reviewer.length; j++) {
 
-      //loop for multiple reviews
-      for (j = 0; j < recallReview.reviewer.length; j++) {
+      var bod = document.getElementById('review-body');
 
-        var bod = document.getElementById('review-body');
+      var paragraphDiv = document.createElement('div');
+      paragraphDiv.setAttribute('class', 'col-xs-10');
+      bod.appendChild(paragraphDiv);
 
-        var paragraphDiv = document.createElement('div');
-        paragraphDiv.setAttribute('class', 'col-xs-10');
-        bod.appendChild(paragraphDiv);
+      var reviewParagraph = document.createElement('p');
+      reviewParagraph.setAttribute('id', 'review');
+      var userIcon = document.createElement('i');
+      userIcon.setAttribute('class', 'fa fa-user');
+      userIcon.setAttribute('aria-hidden', 'true');
+      paragraphDiv.appendChild(userIcon);
+      paragraphDiv.appendChild(reviewParagraph);
+      reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j].text + " ";
 
-        var reviewParagraph = document.createElement('p');
-        reviewParagraph.setAttribute('id', 'review');
-        var userIcon = document.createElement('i');
-        userIcon.setAttribute('class', 'fa fa-user');
-        userIcon.setAttribute('aria-hidden', 'true');
-        paragraphDiv.appendChild(userIcon);
-        paragraphDiv.appendChild(reviewParagraph);
-        reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j].text + " ";
+      //review tag buttons
+      /*funnyButton(paragraphDiv);
 
-        //review tag buttons
-        //funny
+      function funnyButton(append) {
         var buttonForm = document.createElement('form');
-        paragraphDiv.appendChild(buttonForm);
+        append.appendChild(buttonForm);
 
         var funny = document.createElement('button');
         funny.setAttribute('class', 'btn btn-primary');
@@ -377,18 +376,32 @@ body.addEventListener('click', function(theEvent) {
         funny.textContent = "funny: " + recallReview.review[j].funny;
 
         buttonForm.appendChild(funny);
+      }*/
 
-        //useful
-        var useful = document.createElement('button');
-        useful.setAttribute('class', 'btn btn-primary');
-        useful.setAttribute('class', 'useful-count');
-        useful.setAttribute('type', 'button');
-        useful.setAttribute('id', ('useful' + j));
-        useful.textContent = "useful: " + recallReview.review[j].useful;
+      //funny
+      var buttonForm = document.createElement('form');
+      paragraphDiv.appendChild(buttonForm);
 
-        buttonForm.appendChild(useful);
-        //end button tags
-      }
+      var funny = document.createElement('button');
+      funny.setAttribute('class', 'btn btn-primary');
+      funny.setAttribute('class', 'fun-count');
+      funny.setAttribute('type', 'button');
+      funny.setAttribute('id', j);
+      funny.textContent = "funny: " + recallReview.review[j].funny;
+
+      buttonForm.appendChild(funny);
+
+      //useful
+      var useful = document.createElement('button');
+      useful.setAttribute('class', 'btn btn-primary');
+      useful.setAttribute('class', 'useful-count');
+      useful.setAttribute('type', 'button');
+      useful.setAttribute('id', ('useful' + j));
+      useful.textContent = "useful: " + recallReview.review[j].useful;
+
+      buttonForm.appendChild(useful);
+      //end button tags
+    }
 
     var prime = document.getElementById('primed');
     var panelFooter = document.createElement('div');
