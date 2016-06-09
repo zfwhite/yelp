@@ -216,7 +216,6 @@ function createReview(review) {
   panelHeading.appendChild(headingText);
 
   var headingLink = document.createElement('a');
-  headingLink.setAttribute('href', 'http://www.google.com');
   headingLink.setAttribute('class', 'linked');
   headingLink.textContent = review.name;
   headingText.appendChild(headingLink);
@@ -354,10 +353,83 @@ function overhaul(recallReview) {
   addReview.textContent = "Add review"; //add review button
   panelFooter.appendChild(addReview);
 
-  //hidden
+  reviewArea(recallReview);
+
+  //makes review area visible
+  document.getElementById('add-review').addEventListener('click', function(theEvent) {
+
+    var openText = theEvent.target;
+
+    var clear = document.getElementById('first');
+    clear.classList.add('hidden');
+
+    var numberedStar = 0;
+
+    write(openText);
+
+    document.getElementById('submit-review').addEventListener('click', function (nextEvent) {
+
+      if(document.getElementById('complete-review').value === "") {
+        alert("Please input your review.");
+        return false;
+      }
+
+      if(document.getElementById('review-name').value === "") {
+        alert("Please input your name.");
+        return false;
+      }
+
+      var vanish = document.getElementById('top');
+      vanish.classList.add('hidden');
+
+      writeReview(recallReview.id, numberedStar);
+    });
+    //add
+    var starScore = document.getElementById('star-menu');
+    var revHeading = document.getElementById('review-top');
+
+    revHeading.addEventListener('mouseover', function(theEvent) {
+
+      var whichStar = theEvent.target.getAttribute('id');
+      var theStars = starScore.getElementsByTagName('i');
+
+      var numerical = 0;
+
+      for (i = 0; i < theStars.length; i++) {
+        if (whichStar > i) {
+          theStars[i].classList.remove('fa-star-o');
+          theStars[i].classList.add('fa-star');
+        } else {
+          theStars[i].classList.add('fa-star-o');
+          theStars[i].classList.remove('fa-star');
+        }
+      }
+    });
+
+    revHeading.addEventListener('click', function(newEvent) {
+      numberedStar = newEvent.target.getAttribute('id');
+      var hideStar = document.getElementById('star-menu');
+      hideStar.classList.add('hidden');
+      document.getElementById('review-bod').classList.remove('hidden');
+    });
+  });
+  //add funny event listener
+  document.getElementById('review-body').addEventListener('click', function(funnyClick) {
+    var funButton = funnyClick.target.getAttribute('id');
+    tagCounter(funButton, recallReview);
+  });
+  //useful event listener
+  document.getElementById('review-body').addEventListener('click', function(usefulClick) {
+    var usefulButton = usefulClick.target.getAttribute('id');
+    tagCounter(usefulButton, recallReview);
+  });
+}
+
+//hidden
+function reviewArea(recallReview) {
   var rowTwo = document.createElement('div');
   rowTwo.setAttribute('class', 'row hidden');
-  container.appendChild(rowTwo)
+  document.getElementById('contained').appendChild(rowTwo)
 
   var reviewPanel = document.createElement('div');
   reviewPanel.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
@@ -365,6 +437,7 @@ function overhaul(recallReview) {
 
   var reviewHeading = document.createElement('div');
   reviewHeading.setAttribute('class', 'panel-heading well text-center');
+  reviewHeading.setAttribute('id', 'review-top');
   reviewPanel.appendChild(reviewHeading);
 
   var topText = document.createElement('h4');
@@ -373,6 +446,7 @@ function overhaul(recallReview) {
 
   var reviewBody = document.createElement('div');
   reviewBody.setAttribute('class', 'panel-body hidden');
+  reviewBody.setAttribute('id', 'review-bod');
   reviewPanel.appendChild(reviewBody);
 
   var form = document.createElement('form');
@@ -415,74 +489,6 @@ function overhaul(recallReview) {
   reviewButton.setAttribute('value', 'send');
   reviewButton.textContent = "Submit";
   reviewSpan.appendChild(reviewButton);
-
-  //makes review area visible
-  document.getElementById('add-review').addEventListener('click', function(theEvent) {
-
-    var openText = theEvent.target;
-
-    var clear = document.getElementById('first');
-    clear.classList.add('hidden');
-
-    var numberedStar = 0;
-
-    write(openText);
-
-    document.getElementById('submit-review').addEventListener('click', function (nextEvent) {
-
-      if(document.getElementById('complete-review').value === "") {
-        alert("Please input your review.");
-        return false;
-      }
-
-      if(document.getElementById('review-name').value === "") {
-        alert("Please input your name.");
-        return false;
-      }
-
-      var vanish = document.getElementById('top');
-      vanish.classList.add('hidden');
-
-      writeReview(recallReview.id, numberedStar);
-    });
-    //add
-    var starScore = document.getElementById('star-menu');
-
-    reviewHeading.addEventListener('mouseover', function(theEvent) {
-
-      var whichStar = theEvent.target.getAttribute('id');
-      var theStars = starScore.getElementsByTagName('i');
-
-      var numerical = 0;
-
-      for (i = 0; i < theStars.length; i++) {
-        if (whichStar > i) {
-          theStars[i].classList.remove('fa-star-o');
-          theStars[i].classList.add('fa-star');
-        } else {
-          theStars[i].classList.add('fa-star-o');
-          theStars[i].classList.remove('fa-star');
-        }
-      }
-    });
-
-    reviewHeading.addEventListener('click', function(newEvent) {
-      numberedStar = newEvent.target.getAttribute('id');
-      var hideStar = document.getElementById('star-menu');
-      hideStar.classList.add('hidden');
-      reviewBody.classList.remove('hidden');
-    });
-  });
-  //add funny event listener
-  document.getElementById('review-body').addEventListener('click', function(funnyClick) {
-    var funButton = funnyClick.target.getAttribute('id');
-    tagCounter(funButton, recallReview);
-  });
-  //useful event listener
-  document.getElementById('review-body').addEventListener('click', function(usefulClick) {
-    var usefulButton = usefulClick.target.getAttribute('id');
-    tagCounter(usefulButton, recallReview);
-  });
 }
 
 //funny button
@@ -685,7 +691,6 @@ function createDiv(label, arr) {
   panelHeading.appendChild(headingText);
 
   var headingLink = document.createElement('a');
-  headingLink.setAttribute('href', 'http://www.google.com');
   headingLink.setAttribute('class', 'linked');
   headingLink.textContent = arr.name;
   headingText.appendChild(headingLink);
