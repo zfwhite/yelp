@@ -32,6 +32,12 @@
 
 .fun-count {
   margin-right: 5px;
+  margin-left: 80%;
+  margin-bottom: 5px;
+}
+
+.useful-count {
+  margin-bottom: 5px;
 }
 
 /*body {

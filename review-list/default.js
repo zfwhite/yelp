@@ -290,20 +290,28 @@ function overhaul(recallReview) {
   container.setAttribute('class', 'container-fluid');
   document.getElementById('top').appendChild(container);
 
-  createDiv('first', recallReview);
+  var reviewsRow = document.createElement('div');
+  reviewsRow.setAttribute('class', 'row');
+  reviewsRow.setAttribute('id', 'review-row')
+  container.appendChild(reviewsRow);
+  //createDiv('first', recallReview);
 
   reviewContent(recallReview);
 
   var prime = document.getElementById('primed');
   var panelFooter = document.createElement('div');
   panelFooter.setAttribute('class', 'panel-footer well clearfix');
-  prime.appendChild(panelFooter);
+  document.getElementById('review-row').appendChild(panelFooter);
+
+  var dropButton = document.createElement('div');
+  dropButton.setAttribute('class', 'col-xs-8 col-xs-offset-4');
+  panelFooter.appendChild(dropButton);
 
   var addReview = document.createElement('button');
   addReview.setAttribute('class', 'btn btn-primary pull-right');
   addReview.setAttribute('id', 'add-review');
   addReview.textContent = "Add review"; //add review button
-  panelFooter.appendChild(addReview);
+  dropButton.appendChild(addReview);
 
   reviewArea(recallReview);
 
@@ -312,12 +320,12 @@ function overhaul(recallReview) {
 
     var openText = theEvent.target;
 
-    var clear = document.getElementById('first');
+    var clear = document.getElementById('review-row');
     clear.classList.add('hidden');
 
     var numberedStar = 0;
 
-    write(openText);
+    write(document.getElementById('unhide'));
     //add
     var starScore = document.getElementById('star-menu');
     var revHeading = document.getElementById('review-top');
@@ -384,11 +392,6 @@ function createReview(review) {
   headingText.textContent = review.name;
   panelHeading.appendChild(headingText);
 
-  // var headingLink = document.createElement('a');
-  // headingLink.setAttribute('class', 'linked');
-  // headingLink.textContent = review.name;
-  // headingText.appendChild(headingLink);
-
   var panelBody = document.createElement('div');
   panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
   panelPrimary.appendChild(panelBody);
@@ -448,23 +451,40 @@ function averageStars(review, append) {
 function reviewContent(recallReview) {
   for (j = 0; j < recallReview.reviewer.length; j++) {
 
-    var bod = document.getElementById('review-body');
+    var bod = document.getElementById('review-row');
 
     var paragraphDiv = document.createElement('div');
-    paragraphDiv.setAttribute('class', 'col-xs-10');
+    paragraphDiv.setAttribute('id', 'first');
+    paragraphDiv.setAttribute('class', 'col-xs-8 col-xs-offset-2');
     bod.appendChild(paragraphDiv);
+
+    var individualReview = document.createElement('div');
+    individualReview.setAttribute('class', 'panel panel-primary');
+    paragraphDiv.appendChild(individualReview);
+
+    var individualHeading = document.createElement('div');
+    individualHeading.setAttribute('class', 'panel-heading');
+    individualReview.appendChild(individualHeading);
+
+    var individualTitle = document.createElement('h4');
+    individualTitle.textContent = recallReview.reviewer[j];
+    individualHeading.appendChild(individualTitle);
+
+    var individualBody = document.createElement('div');
+    individualBody.setAttribute('class', 'panel-body');
+    individualReview.appendChild(individualBody);
 
     var reviewParagraph = document.createElement('p');
     reviewParagraph.setAttribute('id', 'review');
     var userIcon = document.createElement('i');
     userIcon.setAttribute('class', 'fa fa-user');
     userIcon.setAttribute('aria-hidden', 'true');
-    paragraphDiv.appendChild(userIcon);
-    paragraphDiv.appendChild(reviewParagraph);
-    reviewParagraph.textContent = recallReview.reviewer[j] + ": " + recallReview.review[j].text + " ";
+    individualBody.appendChild(userIcon);
+    individualBody.appendChild(reviewParagraph);
+    reviewParagraph.textContent = recallReview.review[j].text + " ";
 
     //review tag buttons
-    buttons(paragraphDiv, recallReview);
+    buttons(individualReview, recallReview);
   }
 }
 
@@ -472,10 +492,11 @@ function reviewContent(recallReview) {
 function reviewArea(recallReview) {
   var rowTwo = document.createElement('div');
   rowTwo.setAttribute('class', 'row hidden');
+  rowTwo.setAttribute('id', 'unhide');
   document.getElementById('contained').appendChild(rowTwo)
 
   var divFix = document.createElement('div');
-  divFix.setAttribute('class', 'col-xs-8 col-xs-offset-2');
+  divFix.setAttribute('class', 'col-xs-10 col-xs-offset-1');
   rowTwo.appendChild(divFix);
 
   var reviewPanel = document.createElement('div');
@@ -544,8 +565,7 @@ function buttons(append, revPerson) {
   append.appendChild(buttonForm);
 
   var funny = document.createElement('button');
-  funny.setAttribute('class', 'btn btn-primary');
-  funny.setAttribute('class', 'fun-count');
+  funny.setAttribute('class', 'btn btn-primary fun-count');
   funny.setAttribute('type', 'button');
   funny.setAttribute('id', j);
   funny.textContent = "funny: " + revPerson.review[j].funny;
@@ -553,8 +573,7 @@ function buttons(append, revPerson) {
   buttonForm.appendChild(funny);
 
   var useful = document.createElement('button');
-  useful.setAttribute('class', 'btn btn-primary');
-  useful.setAttribute('class', 'useful-count');
+  useful.setAttribute('class', 'btn btn-primary useful-count');
   useful.setAttribute('type', 'button');
   useful.setAttribute('id', ('useful' + j));
   useful.textContent = "useful: " + revPerson.review[j].useful;
@@ -639,12 +658,7 @@ function funnyCount(update) {
 
 //removes hidden class from review text div
 function write(review) {
-  var targetFooter = review.parentElement;
-  var targetPrimary = targetFooter.parentElement;
-  var targetRow = targetPrimary.parentElement;
-  var targetDiv = targetRow.parentElement;
-  var targetHidden = targetDiv.nextSibling;
-  targetHidden.classList.remove('hidden');
+  review.classList.remove('hidden');
 }
 
 //function to write and submit a review
