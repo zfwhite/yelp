@@ -483,8 +483,12 @@ function reviewContent(recallReview) {
     individualBody.appendChild(reviewParagraph);
     reviewParagraph.textContent = recallReview.review[j].text + " ";
 
+    var reviewFooter = document.createElement('div');
+    reviewFooter.setAttribute('class', 'panel-footer well clearfix');
+    individualReview.appendChild(reviewFooter);
+
     //review tag buttons
-    buttons(individualReview, recallReview);
+    buttons(reviewFooter, recallReview);
   }
 }
 
