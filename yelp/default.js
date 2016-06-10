@@ -436,13 +436,13 @@ function averageStars(review, append) {
   var averageScore = review.score / review.reviewer.length;
   for (j = 0; j < Math.floor(averageScore); j++) {
     var rating = document.createElement('i');
-    rating.setAttribute('class', 'fa fa-star');
+    rating.setAttribute('class', 'fa fa-star star');
     rating.setAttribute('aria-hidden', 'true');
     append.appendChild(rating);
   }
   if ((averageScore - Math.floor(averageScore)) % 1 > .3) {
     var rating = document.createElement('i');
-    rating.setAttribute('class', 'fa fa-star-half');
+    rating.setAttribute('class', 'fa fa-star-half star');
     rating.setAttribute('aria-hidden', 'true');
     append.appendChild(rating);
   }
