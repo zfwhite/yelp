@@ -203,9 +203,13 @@ function createReview(review) {
   row.setAttribute('class', 'row');
   container.appendChild(row);
 
+  var fixDiv = document.createElement('div');
+  fixDiv.setAttribute('class', 'col-xs-8 col-xs-offset-2');
+  row.appendChild(fixDiv);
+
   var panelPrimary = document.createElement('div');
-  panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
-  row.appendChild(panelPrimary);
+  panelPrimary.setAttribute('class', 'panel panel-primary');
+  fixDiv.appendChild(panelPrimary);
 
   var panelHeading = document.createElement('div');
   panelHeading.setAttribute('class', 'panel-heading well');
@@ -213,12 +217,13 @@ function createReview(review) {
 
   var headingText = document.createElement('h4');
   headingText.setAttribute('class', 'text-center');
+  headingText.textContent = review.name;
   panelHeading.appendChild(headingText);
 
-  var headingLink = document.createElement('a');
-  headingLink.setAttribute('class', 'linked');
-  headingLink.textContent = review.name;
-  headingText.appendChild(headingLink);
+  // var headingLink = document.createElement('a');
+  // headingLink.setAttribute('class', 'linked');
+  // headingLink.textContent = review.name;
+  // headingText.appendChild(headingLink);
 
   var panelBody = document.createElement('div');
   panelBody.setAttribute('class', 'panel-body pre-scrollable panel-height');
@@ -452,9 +457,13 @@ function reviewArea(recallReview) {
   rowTwo.setAttribute('class', 'row hidden');
   document.getElementById('contained').appendChild(rowTwo)
 
+  var divFix = document.createElement('div');
+  divFix.setAttribute('class', 'col-xs-8 col-xs-offset-2');
+  rowTwo.appendChild(divFix);
+
   var reviewPanel = document.createElement('div');
-  reviewPanel.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
-  rowTwo.appendChild(reviewPanel)
+  reviewPanel.setAttribute('class', 'panel panel-primary');
+  divFix.appendChild(reviewPanel)
 
   var reviewHeading = document.createElement('div');
   reviewHeading.setAttribute('class', 'panel-heading well text-center');
@@ -698,10 +707,14 @@ function createDiv(label, arr) {
   row.setAttribute('class', 'row');
   container.appendChild(row);
 
+  var helpDiv = document.createElement('div');
+  helpDiv.setAttribute('class', 'col-xs-8 col-xs-offset-2');
+  row.appendChild(helpDiv);
+
   var panelPrimary = document.createElement('div');
-  panelPrimary.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
+  panelPrimary.setAttribute('class', 'panel panel-primary');
   panelPrimary.setAttribute('id', 'primed');
-  row.appendChild(panelPrimary);
+  helpDiv.appendChild(panelPrimary);
 
   var panelHeading = document.createElement('div');
   panelHeading.setAttribute('class', 'panel-heading well');
@@ -739,12 +752,16 @@ function createLocation() {
   body.appendChild(locationDiv);
 
   var locationRow = document.createElement('div');
-  locationRow.setAttribute('class', 'row');
+  locationRow.setAttribute('class', 'row loc-row');
   locationDiv.appendChild(locationRow);
 
+  var divHelp = document.createElement('div');
+  divHelp.setAttribute('class', 'col-xs-8 col-xs-offset-2');
+  locationRow.appendChild(divHelp);
+
   var locationPanel = document.createElement('div');
-  locationPanel.setAttribute('class', 'panel panel-primary col-xs-8 col-xs-offset-2');
-  locationRow.appendChild(locationPanel);
+  locationPanel.setAttribute('class', 'panel panel-primary');
+  divHelp.appendChild(locationPanel);
 
   var locationHeading = document.createElement('div');
   locationHeading.setAttribute('class', 'panel-heading well text-center');
