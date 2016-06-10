@@ -178,6 +178,170 @@ home.addEventListener('click', function() {
   remove('location-div');
 });
 
+
+
+//Search button even listener
+searchButton.addEventListener('click', function(theEvent) {
+  var searchItem = document.getElementById('search-reviews');
+  remove('top');
+  remove('single');
+  remove('location-div');
+  reviewBox(searchItem); //search Fx
+});
+
+function remove(spot) {
+  var element = document.getElementById(spot);
+  if (typeof(element) != 'undefined' && element != null) {    //Check to ensure the existence of div before clearing previous reviews
+    element.parentNode.removeChild(element);
+  }
+}
+
+//global to transfer recallReview to event listeners when needed
+var keepArray = [];
+
+body.addEventListener('click', function(theEvent) {
+  var readReviews = theEvent.target;
+  var textId = theEvent.target.getAttribute('id');
+  var switchReview = [];
+
+  //decides where to show review text box
+  for (i = 0; i < reviews.length; i++) {
+    if (textId === reviews[i].id) {
+      switchReview = reviews[i];
+      keepArray = reviews[i];
+
+      remove('top');
+      remove('single');
+      overhaul(switchReview);
+    }
+  }
+});
+
+//add funny event listener
+body.addEventListener('click', function(funnyClick) {
+  if ($(funnyClick.target).hasClass('fun-count')) {
+    console.log('this');
+    var funButton = funnyClick.target.getAttribute('id');
+    tagCounter(funButton, keepArray);}
+});
+//useful event listener
+body.addEventListener('click', function(usefulClick) {
+  if ($(usefulClick.target).hasClass('useful-count')) {
+    var usefulButton = usefulClick.target.getAttribute('id');
+    tagCounter(usefulButton, keepArray);}
+});
+
+document.body.addEventListener('click', function(thisEvent) {
+  if ($(thisEvent.target).hasClass('star')) {
+    var numberedStar = thisEvent.target.getAttribute('id');
+    var hideStar = document.getElementById('star-menu');
+    hideStar.classList.add('hidden');
+    document.getElementById('review-bod').classList.remove('hidden');
+  } else {
+    return false;
+  }
+});
+
+body.addEventListener('click', function (nextEvent) {
+
+  if (document.getElementById('submit-review') == nextEvent.target) {
+
+    if(document.getElementById('complete-review').value === "") {
+      alert("Please input your review.");
+      return false;
+    }
+
+    if(document.getElementById('review-name').value === "") {
+      alert("Please input your name.");
+      return false;
+    }
+
+    var vanish = document.getElementById('top');
+    vanish.classList.add('hidden');
+
+    writeReview(keepArray.id, 0);
+  } else {
+    return false;
+  }
+});
+
+//add location
+var addLocation = document.getElementById('addLocation');
+addLocation.addEventListener('click', function() {
+  remove('top');
+  remove('single');
+  remove('location-div');
+  createLocation();
+});
+
+//submit new location to array
+body.addEventListener('click', function(locationEvent) {
+  var submitLocation = document.getElementById('submit-location');
+  var locationClick = locationEvent.target;
+  newLocation(locationClick, submitLocation);
+});
+
+function overhaul(recallReview) {
+
+  upperDiv('top');
+
+  var container = document.createElement('div');
+  container.setAttribute('id', 'contained');
+  container.setAttribute('class', 'container-fluid');
+  document.getElementById('top').appendChild(container);
+
+  createDiv('first', recallReview);
+
+  reviewContent(recallReview);
+
+  var prime = document.getElementById('primed');
+  var panelFooter = document.createElement('div');
+  panelFooter.setAttribute('class', 'panel-footer well clearfix');
+  prime.appendChild(panelFooter);
+
+  var addReview = document.createElement('button');
+  addReview.setAttribute('class', 'btn btn-primary pull-right');
+  addReview.setAttribute('id', 'add-review');
+  addReview.textContent = "Add review"; //add review button
+  panelFooter.appendChild(addReview);
+
+  reviewArea(recallReview);
+
+  //makes review area visible
+  document.getElementById('add-review').addEventListener('click', function(theEvent) {
+
+    var openText = theEvent.target;
+
+    var clear = document.getElementById('first');
+    clear.classList.add('hidden');
+
+    var numberedStar = 0;
+
+    write(openText);
+    //add
+    var starScore = document.getElementById('star-menu');
+    var revHeading = document.getElementById('review-top');
+
+    revHeading.addEventListener('mouseover', function(theEvent) {
+
+      var whichStar = theEvent.target.getAttribute('id');
+      var theStars = starScore.getElementsByTagName('i');
+
+      var numerical = 0;
+
+      for (i = 0; i < theStars.length; i++) {
+        if (whichStar > i) {
+          theStars[i].classList.remove('fa-star-o');
+          theStars[i].classList.add('fa-star');
+        } else {
+          theStars[i].classList.add('fa-star-o');
+          theStars[i].classList.remove('fa-star');
+        }
+      }
+    });
+  });
+}
+
 function upperDiv(id) {
   var mainDiv = document.createElement('div');
   mainDiv.setAttribute('id', id);
@@ -281,130 +445,6 @@ function averageStars(review, append) {
   }
 }
 
-
-//Search button even listener
-searchButton.addEventListener('click', function(theEvent) {
-  var searchItem = document.getElementById('search-reviews');
-  remove('top');
-  remove('single');
-  remove('location-div');
-  reviewBox(searchItem); //search Fx
-});
-
-function remove(spot) {
-  var element = document.getElementById(spot);
-  if (typeof(element) != 'undefined' && element != null) {    //Check to ensure the existence of div before clearing previous reviews
-    element.parentNode.removeChild(element);
-  }
-}
-
-//global to transfer recallReview to event listeners when needed
-var keepArray = [];
-
-body.addEventListener('click', function(theEvent) {
-  var readReviews = theEvent.target;
-  var textId = theEvent.target.getAttribute('id');
-  var switchReview = [];
-
-  //decides where to show review text box
-  for (i = 0; i < reviews.length; i++) {
-    if (textId === reviews[i].id) {
-      switchReview = reviews[i];
-      keepArray = reviews[i];
-
-      remove('top');
-      remove('single');
-      overhaul(switchReview);
-    }
-  }
-});
-
-function overhaul(recallReview) {
-
-  upperDiv('top');
-
-  var container = document.createElement('div');
-  container.setAttribute('id', 'contained');
-  container.setAttribute('class', 'container-fluid');
-  document.getElementById('top').appendChild(container);
-
-  createDiv('first', recallReview);
-
-  reviewContent(recallReview);
-
-  var prime = document.getElementById('primed');
-  var panelFooter = document.createElement('div');
-  panelFooter.setAttribute('class', 'panel-footer well clearfix');
-  prime.appendChild(panelFooter);
-
-  var addReview = document.createElement('button');
-  addReview.setAttribute('class', 'btn btn-primary pull-right');
-  addReview.setAttribute('id', 'add-review');
-  addReview.textContent = "Add review"; //add review button
-  panelFooter.appendChild(addReview);
-
-  reviewArea(recallReview);
-
-  //makes review area visible
-  document.getElementById('add-review').addEventListener('click', function(theEvent) {
-
-    var openText = theEvent.target;
-
-    var clear = document.getElementById('first');
-    clear.classList.add('hidden');
-
-    var numberedStar = 0;
-
-    write(openText);
-    //add
-    var starScore = document.getElementById('star-menu');
-    var revHeading = document.getElementById('review-top');
-
-    revHeading.addEventListener('mouseover', function(theEvent) {
-
-      var whichStar = theEvent.target.getAttribute('id');
-      var theStars = starScore.getElementsByTagName('i');
-
-      var numerical = 0;
-
-      for (i = 0; i < theStars.length; i++) {
-        if (whichStar > i) {
-          theStars[i].classList.remove('fa-star-o');
-          theStars[i].classList.add('fa-star');
-        } else {
-          theStars[i].classList.add('fa-star-o');
-          theStars[i].classList.remove('fa-star');
-        }
-      }
-    });
-  });
-}
-
-//add funny event listener
-body.addEventListener('click', function(funnyClick) {
-  if ($(funnyClick.target).hasClass('fun-count')) {
-    console.log('this');
-    var funButton = funnyClick.target.getAttribute('id');
-    tagCounter(funButton, keepArray);}
-});
-//useful event listener
-body.addEventListener('click', function(usefulClick) {
-  if ($(usefulClick.target).hasClass('useful-count')) {
-    var usefulButton = usefulClick.target.getAttribute('id');
-    tagCounter(usefulButton, keepArray);}
-});
-
-document.body.addEventListener('click', function(thisEvent) {
-  if ($(thisEvent.target).hasClass('star')) {
-    var numberedStar = thisEvent.target.getAttribute('id');
-    var hideStar = document.getElementById('star-menu');
-    hideStar.classList.add('hidden');
-    document.getElementById('review-bod').classList.remove('hidden');
-  } else {
-    return false;
-  }
-});
-
 function reviewContent(recallReview) {
   for (j = 0; j < recallReview.reviewer.length; j++) {
 
@@ -427,29 +467,6 @@ function reviewContent(recallReview) {
     buttons(paragraphDiv, recallReview);
   }
 }
-
-body.addEventListener('click', function (nextEvent) {
-
-  if (document.getElementById('submit-review') == nextEvent.target) {
-
-    if(document.getElementById('complete-review').value === "") {
-      alert("Please input your review.");
-      return false;
-    }
-
-    if(document.getElementById('review-name').value === "") {
-      alert("Please input your name.");
-      return false;
-    }
-
-    var vanish = document.getElementById('top');
-    vanish.classList.add('hidden');
-
-    writeReview(keepArray.id, 0);
-  } else {
-    return false;
-  }
-});
 
 //hidden
 function reviewArea(recallReview) {
@@ -625,7 +642,8 @@ function write(review) {
   var targetFooter = review.parentElement;
   var targetPrimary = targetFooter.parentElement;
   var targetRow = targetPrimary.parentElement;
-  var targetHidden = targetRow.nextSibling;
+  var targetDiv = targetRow.parentElement;
+  var targetHidden = targetDiv.nextSibling;
   targetHidden.classList.remove('hidden');
 }
 
@@ -848,19 +866,3 @@ function newLocation(click, id) {
     return false;
   }
 }
-
-//add location
-var addLocation = document.getElementById('addLocation');
-addLocation.addEventListener('click', function() {
-  remove('top');
-  remove('single');
-  remove('location-div');
-  createLocation();
-});
-
-//submit new location to array
-body.addEventListener('click', function(locationEvent) {
-  var submitLocation = document.getElementById('submit-location');
-  var locationClick = locationEvent.target;
-  newLocation(locationClick, submitLocation);
-});
