@@ -293,6 +293,7 @@ function remove(spot) {
   }
 }
 
+//global to transfer recallReview to event listeners when needed
 var keepArray = [];
 
 body.addEventListener('click', function(theEvent) {
@@ -372,21 +373,24 @@ function overhaul(recallReview) {
       }
     });
   });
-  //add funny event listener
-  document.getElementById('review-body').addEventListener('click', function(funnyClick) {
-    var funButton = funnyClick.target.getAttribute('id');
-    tagCounter(funButton, recallReview);
-  });
-  //useful event listener
-  document.getElementById('review-body').addEventListener('click', function(usefulClick) {
-    var usefulButton = usefulClick.target.getAttribute('id');
-    tagCounter(usefulButton, recallReview);
-  });
 }
+
+//add funny event listener
+body.addEventListener('click', function(funnyClick) {
+  if ($(funnyClick.target).hasClass('fun-count')) {
+    console.log('this');
+    var funButton = funnyClick.target.getAttribute('id');
+    tagCounter(funButton, keepArray);}
+});
+//useful event listener
+body.addEventListener('click', function(usefulClick) {
+  if ($(usefulClick.target).hasClass('useful-count')) {
+    var usefulButton = usefulClick.target.getAttribute('id');
+    tagCounter(usefulButton, keepArray);}
+});
 
 document.body.addEventListener('click', function(thisEvent) {
   if ($(thisEvent.target).hasClass('star')) {
-    console.log('it happened');
     var numberedStar = thisEvent.target.getAttribute('id');
     var hideStar = document.getElementById('star-menu');
     hideStar.classList.add('hidden');
