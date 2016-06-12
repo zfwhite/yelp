@@ -168,9 +168,9 @@ var reviews = [
   //List of places with reviews
 ];
 
-var body = document.getElementsByTagName('body')[0];
-var home = document.getElementById('home');
-var searchButton = document.getElementById('search-button');
+var body = document.getElementsByTagName('body')[0],
+  home = document.getElementById('home'),
+  searchButton = document.getElementById('search-button');
 
 home.addEventListener('click', function() {
   remove('top');
@@ -276,8 +276,8 @@ addLocation.addEventListener('click', function() {
 
 //submit new location to array
 body.addEventListener('click', function(locationEvent) {
-  var submitLocation = document.getElementById('submit-location');
-  var locationClick = locationEvent.target;
+  var submitLocation = document.getElementById('submit-location'),
+      locationClick = locationEvent.target;
   newLocation(locationClick, submitLocation);
 });
 
@@ -298,8 +298,8 @@ function overhaul(recallReview) {
 
   reviewContent(recallReview);
 
-  var prime = document.getElementById('primed');
-  var panelFooter = document.createElement('div');
+  var prime = document.getElementById('primed'),
+      panelFooter = document.createElement('div');
   panelFooter.setAttribute('class', 'panel-footer well clearfix');
   document.getElementById('review-row').appendChild(panelFooter);
 
@@ -327,13 +327,13 @@ function overhaul(recallReview) {
 
     write(document.getElementById('unhide'));
     //add
-    var starScore = document.getElementById('star-menu');
-    var revHeading = document.getElementById('review-top');
+    var starScore = document.getElementById('star-menu'),
+        revHeading = document.getElementById('review-top');
 
     revHeading.addEventListener('mouseover', function(theEvent) {
 
-      var whichStar = theEvent.target.getAttribute('id');
-      var theStars = starScore.getElementsByTagName('i');
+      var whichStar = theEvent.target.getAttribute('id'),
+          theStars = starScore.getElementsByTagName('i');
 
       var numerical = 0;
 
@@ -628,8 +628,8 @@ function tagCounter(id, comment) {
   for (j = 0; j < comment.review.length; j++) {
 
     if (id == ('useful' + j)) {
-      num = 'useful' + j.toString();
-      var updateUseful = document.getElementById(num);
+      var num = 'useful' + j.toString(),
+          updateUseful = document.getElementById(num);
 
       if (comment.review[j].useful < 1) {
         comment.review[j].useful += 1;
@@ -638,8 +638,8 @@ function tagCounter(id, comment) {
         funnyCount(comment);
       }
     } else if (id == j) {
-      num = j.toString();
-      var updateFunny = document.getElementById(num);
+      var num = j.toString(),
+          updateFunny = document.getElementById(num);
 
       if (comment.review[j].funny < 1) {
         comment.review[j].funny += 1;
@@ -667,10 +667,10 @@ function write(review) {
 
 //function to write and submit a review
 function writeReview(recReview, numStar) {
-  var written = document.getElementById('complete-review').value;
-  var named = document.getElementById('review-name').value;
-  var countScore = parseInt(numStar);
-  var reviewObj = { text: written, funny: 0, useful: 0};
+  var written = document.getElementById('complete-review').value,
+      named = document.getElementById('review-name').value,
+      countScore = parseInt(numStar),
+      reviewObj = { text: written, funny: 0, useful: 0};
 
   for (i = 0; i < reviews.length; i++) {
     if (reviews[i].id.indexOf(recReview) !== -1) {
@@ -855,11 +855,11 @@ function createLocation() {
 
 function newLocation(click, id) {
   if (click == id) {
-    var newName = document.getElementById('location-name');
-    var newCategory = document.getElementById('location-category');
-    var newDescription = document.getElementById('location-description');
-    var newId = newName.value.split(' ', 1) + Math.floor(Math.random() * 1000);
-    var categoryArray = newCategory.value.split(' ', 2);
+    var newName = document.getElementById('location-name'),
+        newCategory = document.getElementById('location-category'),
+        newDescription = document.getElementById('location-description'),
+        newId = newName.value.split(' ', 1) + Math.floor(Math.random() * 1000),
+        categoryArray = newCategory.value.split(' ', 2);
 
     var newRestaurant = {
       category: categoryArray,
