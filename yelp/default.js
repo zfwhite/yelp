@@ -205,7 +205,7 @@ body.addEventListener('click', function(theEvent) {
   var switchReview = [];
 
   //decides where to show review text box
-  for (i = 0; i < reviews.length; i++) {
+  for (var i = 0, len = reviews.length; i < len; i++) {
     if (textId === reviews[i].id) {
       switchReview = reviews[i];
       keepArray = reviews[i];
@@ -449,7 +449,7 @@ function averageStars(review, append) {
 }
 
 function reviewContent(recallReview) {
-  for (j = 0; j < recallReview.reviewer.length; j++) {
+  for (var j = 0, len = recallReview.reviewer.length; j < len; j++) {
 
     var bod = document.getElementById('review-row');
 
@@ -625,7 +625,7 @@ function createStars(reviewHeading) {
 
 // review tag function
 function tagCounter(id, comment) {
-  for (j = 0; j < comment.review.length; j++) {
+  for (var j = 0, len = comment.review.length; j < len; j++) {
 
     if (id == ('useful' + j)) {
       var num = 'useful' + j.toString(),
@@ -652,7 +652,7 @@ function tagCounter(id, comment) {
 }
 
 function funnyCount(update) {
-  for (i = 0; i < reviews.length; i++) {
+  for (var i = 0, len = reviews.length; i < len; i++) {
 
     if (reviews[i].name == update.name) {
       reviews[i] = update;
@@ -672,7 +672,7 @@ function writeReview(recReview, numStar) {
       countScore = parseInt(numStar),
       reviewObj = { text: written, funny: 0, useful: 0};
 
-  for (i = 0; i < reviews.length; i++) {
+  for (var i = 0, len = reviews.length; i < len; i++) {
     if (reviews[i].id.indexOf(recReview) !== -1) {
       reviews[i].review.push(reviewObj);
       reviews[i].reviewer.push(named);
@@ -689,7 +689,7 @@ function updatedReviews(newReview) {
 
   upperDiv('single');
 
-  for (var i = 0; i < reviews.length; i++) {
+  for (var i = 0, len = reviews.length; i < len; i++) {
     if (reviews[i].name == newReview) {
 
       var container = document.createElement('div');
